@@ -1,0 +1,387 @@
+\documentclass[a4paper,10pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{cancel}
+\usepackage{empheq}
+\usepackage{float}
+
+
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+\definecolor{grey}{RGB}{240,240,240}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[ELE2024 Coursework]{ELE2024 Control Coursework}
+
+\author[J. Boden]{John Boden}
+\author[J. Tutty]{Jonathan Tutty}
+\author[S. Paine]{Simon Paine}
+
+\address[J. Boden, J. Tutty and S. Paine]{Email addresses: \href{mailto:jboden03@qub.ac.uk}{jboden03@qub.ac.uk},
+\href{mailto:jtutty01@qub.ac.uk}{jtutty01@qub.ac.uk} and
+\href{mailto:spaine01@qub.ac.uk}{spaine01@qub.ac.uk}.}
+\thanks{Link to Git Hub code:.... 
+        Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+
+\section{Part A}
+
+NOTE: CTRL + F9 is the shortcut to compile on Papeeria
+% * <jboden03@qub.ac.uk> 12:28:30 04 Dec 2020 UTC+0000:
+% This is useful
+% ^ <Jonathan Tutty> 15:11:46 05 Dec 2020 UTC+0000:
+% Good to know, ty
+
+\subsection{Problem A1}\label{sec:a1}
+% * <jboden03@qub.ac.uk> 14:10:20 04 Dec 2020 UTC+0000:
+% NB. I have collapsed Part A1 - it is here
+\The objective of this question was to use the information provided in the problem description to derive a system of ordinary differential equation describing how the input voltage, V, affects the position, $x$, of the ball on the inclined plane.
+\newline An inerital frame of reference was introduced where counterclockwise rotations were taken to be positive.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{figures/courseworktemplate3}
+\caption{The system of a wooden ball on an inclined plane, involving a spring, damper and electromagnet controlled by a voltage V. Resolved forces are indicated in green.}
+\label{fig:system}
+\end{figure}
+
+\newline Initally, we can derive an equation to represent the static friction, $T$, acting on the system as follows:
+\newline It is known that the friction creates a torque on the ball with respect to its centre of mass. From Figure xyz, we can see this is equal to the Friction multiplied by the radius, i.e. $Tr$. 
+\newline Applying Newton's law for rotational motion leads to the following equation:
+
+\begin{align}
+\label{1.1}
+Tr &= I\ddot{\theta}
+\end{align}
+
+\newline where \ddot{\theta} represents the ball's angular acceleration. Recalling that the angular acceleration and linear acceleration, \ddot{x}, are linked by the following equation:
+
+\begin{align}
+\ddot{x} &= \ddot{\theta}r \label{1.2} \\
+\intertext{Rearranging, we see that:}
+\ddot{\theta} &= \frac{\ddot{x}}{r} \label{1.3}
+\end{align}
+
+\newline Substitution of \ref{1.3} into \ref{1.1} leads to the following equation for the friction:
+
+\begin{align}
+Tr &= I\bigg(\frac{\ddot{x}}{r}\bigg)\nonumber\\ 
+Tr &= \frac{I_n\ddot{x}}{r} \nonumber \\ 
+\intertext{therefore:}
+T &= \frac{I_n\ddot{x}}{r^2} \label{1.4}
+\end{align}
+
+\newline We can also substitute for $I_n$, the moment of inertia of the ball. 
+\newline For a ball where an axis runs through its centre, $I_n = \frac{2}{5}mr^2$.
+\newline The equation for friction therefore becomes:
+
+\begin{align}
+T &= \frac{\frac{2}{5}m\cancel{r^2}\ddot{x}}{\cancel{r^2}} \nonumber \\
+T &= \frac{2}{5}m\ddot{x} \label{1.5}
+\end{align}
+\vspace{3mm}
+
+\newline A system of ordinary differential equations that describe the system can now be derived as follows:
+\begin{align}
+F_{mag} + mg\sin(\phi) - b\dot{x} - k(x - d) - T &= m\ddot{x} \nonumber \\
+c \frac{I^2}{y^2} + mg\sin(\phi) - b\dot{x} - k(x - d) - T &= m\ddot{x} \nonumber \\
+\intertext{substituting for T and also for y:}
+c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) - \frac{2}{5}m\ddot{x} &= m\ddot{x} \nonumber \\
+c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) &= m\ddot{x} + \frac{2}{5}m\ddot{x}\nonumber \\
+c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) &= \frac{7}{5}m\ddot{x}\nonumber
+\end{align}
+
+rearranging to determine $\ddot{x}$:
+
+\begin{align}
+\ddot{x} &= \frac{c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x-d)}{\frac{7}{5}m} \label{1.6}
+\end{align}
+
+rearranging this leads to an equation summarising the balls acceleration:
+
+\begin{align}
+\ddot{x} &= \frac{5}{7m}\bigg(c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x-d)\bigg) \label{1.7}
+\end{align}
+
+\newline From the circuit given in the problem ddescription, we can establish that:
+
+\begin{align}
+V = IR + L\dot{I} \nonumber \\
+\intertext{therefore:}
+\dot{I} = \frac{V - IR}{L} \label{1.8}
+\end{align}
+
+\newline From the problem description, we are told that:
+\begin{align}
+L = L_0 + L_1\exp(-\alpha y) \label{1.9}
+\end{align}
+
+\newline Substituting \ref{1.9} into \ref{1.8} leads to the following overall equation:
+
+\begin{align}
+\dot{I} = \frac{V - IR}{L_0 + L_1\exp(-\alpha y)} \label{1.10}
+\end{align}
+
+\newline Overall, we can describe the system using equations \ref{1.7} and \ref{1.10}
+
+\subsection{Problem A2}\label{sec:a2}
+We can now write the system in state space representation, using the two equations obtained in \ref{sec:a1}.
+\vspace{4mm}
+
+We can firstly define four new variables as follows:
+
+\begin{align}
+x_1 &= x \label{1.11} \\
+x_2 &= \dot{x_1} (= \dot{x}) \label{1.12} \\
+x_3 &= I \label{1.13} \\
+x_4 &= \dot{I} (= \dot{x_3}) \label{1.14}
+\end{align}
+
+\newline We can now rewirt \ref{1.7} and \ref{1.10} using the new variables as follows:
+
+\begin{align}
+\dot{x_2} &= \frac{5}{7m}\bigg(c \frac{{x_3}^2}{(\delta - x_1)^2} + mg\sin(\phi) - bx_2 - k(x_1-d)\bigg) \label{1.15} \\
+\dot{I} &= \frac{V - IR}{L_0 + L_1\exp(-\alpha y)} \label{1.10}
+\end{align}
+
+
+\subsection{Problem A3}\label{sec:a3}
+The equlibrium points of the system are characterised in \ref{eq:eq_points}.
+
+\begin{subequations}\label{eq:eq_points}
+\begin{align}
+      x^{eq}_{2} &= 0 \\
+     \frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \\
+     x^{eq}_{4} &= 0 \\
+     \frac{V - x_3^{eq}R}{L_0 + L_1\exp(-\alpha(\delta - x_1^{eq}))} &= 0
+\end{align}
+\end{subequations}
+
+\subsection{Problem A4}\label{sec:a4}
+We subtract (???) and (\ref{eq:eq_points}) by parts to obtain
+
+\begin{subequations}
+     \begin{align}
+          \dot{x_1} &= x_2 - x_2^{eq} \\
+          \dot{x_2} &=  \frac{5}{7m}\bigg(c \frac{{x_3}^2}{(\delta - x_1)^2} + mg\sin(\phi) - bx_2 - k(x_1-d)\bigg) - \frac{5}{7m}\left(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\right) \label{eq:x2dot}\\
+          \dot{x_3} &= x_4 - x_3^{eq} \\
+          \dot{x_4} &= \frac{V - x_3R}{L_0 + L_1\exp(-\alpha(\delta - x_1))} - \frac{V - x_3^{eq}R}{L_0 + L_1\exp(-\alpha(\delta - x_1^{eq}))} \label{eq:x4dot}
+     \end{align}
+\end{subequations}\newline
+We define the functions
+
+\begin{subequations}
+    \begin{align}
+         \phi(x_1, x_2, x_3) = \dot{x_2} &= \frac{5}{7m}\left[\frac{cx_3^2}{(\delta - x_2)^2} - \frac{c(x_3^{eq})^2}{(\delta - x_2^{eq})^2} - k(x_1 - x_1^{eq}) - b(x_2 - x_2^{eq})\right] \\
+         \psi(V, x_1, x_3) = \dot{x_4} &= \frac{V - x_3R}{L_0 + L_1\exp(-\alpha(\delta - x_1))} - \frac{V^{eq} - x_3^{eq}R}{L_0 + L_1\exp(-\alpha(\delta - x_1^{eq}))}
+    \end{align}
+\end{subequations}
+
+We linearised $\phi$ at an equlibrium $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its partial derivatives with respect to $x_1, x_2$ and $x_3$ at the equlibrium point are
+
+\begin{subequations}
+     \begin{align}
+          \frac{\partial\phi}{\partial x_1}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right) \\
+          \frac{\partial\phi}{\partial x_2}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= - \frac{5 b}{7 m} \\
+          \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}
+     \end{align}
+\end{subequations}
+
+therefore, $\phi(x_1, x_2, x_3)$ can be approximated by
+\begin{equation}
+     \phi(x_1, x_2, x_3) \approx \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)(x_1 - x_1^{eq}) - \frac{5 b}{7 m}(x_2 - x_2^{eq}) + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}(x_3 - x_3^{eq})
+\end{equation}
+
+We linearised $\psi$ at an equlibrium $(V^{eq}, x_1^{eq}, x_3^{eq})$. Its partial derivatives with respect to $V, x_1$ and $x_3$ at the equlibrium point are
+
+\begin{subequations}
+     \begin{align}
+        \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}} \\
+          \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}} \\
+          \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}
+     \end{align}
+\end{subequations}
+
+therefore, $\psi(V, x_1, x_3)$ can be approximated by
+\begin{equation}
+     \psi(V, x_1, x_3) \approx \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(V - V^{eq}) - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}(x_1 - X_1^{eq}) - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(x_3 - x_3^{eq})
+\end{equation}
+
+We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overline{x}_2 = x_2-x_2^{eq}, \overline{x}_3 = x_3-x_3^{eq}$ and $\overline{V} = V-V^{eq}$. The linearised system then becomes
+
+\begin{subequations}
+     \begin{align}
+          \dot{\overline{x}}_1 &= \overline{x}_2 \\
+          \dot{\overline{x}}_2 &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)\overline{x}_1  - \frac{5 b}{7 m}\overline{x}_2 + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}\overline{x}_3\\
+          \dot{\overline{x}}_3 &= \overline{x}_4 \\
+          \dot{\overline{x}}_4 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{V} - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}\overline{x}_1 - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{x}_3
+     \end{align}
+\end{subequations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Jonathan
+\subsection{Problem A5}\label{sec:a5}\hfill
+
+\begin{figure}[H]
+% * <Jonathan Tutty> 16:26:09 07 Dec 2020 UTC+0000:
+% I also added the "float" package so you can use "H" to force latex to put an image where you want it.
+     \includegraphics[width = 0.5\textwidth]{figures/tf_block.eps}
+     \caption{Block diagram of the system's tranfer function}
+     \label{fig:tfBlock}
+\end{figure}
+
+The equation for the transfer function of a dynamical system is
+
+\begin{equation}
+     G(s) = \frac{X(s)}{U(s)} \label{eq:TF} \\
+\end{equation}
+
+\begin{center}
+     where $X(s)$ is the input (s-domain), \\
+     and $U(s)$ is the output (s-domain)
+\end{center}
+\vspace{10pt}
+
+The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}. In order to determine $G(s)$ the Laplace transform is applied to equations \ref{eq:}. This gives
+
+\setlength{\jot}{5pt} % Increases spacing between equations
+
+\begin{subequations} \label{eq:SysLT}
+    \begin{align}
+         s\overline{X}_1(s) &= \overline{X}_2(s) \label{eq:sX1} \\
+         s\overline{X}_2(s) &= A_1(s)\overline{X}_1(s) + A_2(s)\overline{X}_2(s) + A_3(s)\overline{X}_3(s) \label{eq:sX2} \\
+         s\overline{X}_3(s) &= \overline{X}_4(s) \label{eq:sX3} \\
+         s\overline{X}_4(s) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) + B_3(s)\overline{X}_3(s) \label{eq:sX4}
+    \end{align}
+\end{subequations}
+\vspace{1pt}
+
+In oder to find the tranfer function, an expression for $\overline{X}_1(s)$ in terms of $\overline{V}(s)$ must be found. To do this two expressions for $\overline{X}_3(s)$ can be found and then solved simultaneously.\\
+The first expression is
+
+\begin{align*}
+     s^2\overline{X}_1(s) &= A_1(s)\overline{X}_1(s) + A_2(s)\overline{X}_2(s) + A_3(s)\overline{X}_3(s) \\
+     \iff s^2\overline{X}_1(s) &= A_1(s)\overline{X}_1(s) + sA_2(s)\overline{X}_1(s) + A_3(s)\overline{X}_3(s) \\
+     \iff A_3(s)\overline{X}_3(s) &= s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)
+\end{align*}
+\vspace{1pt}
+
+Therefore,
+
+\begin{equation}
+     \overline{X}_3(s) =\frac{s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)}{A_3(s)} \label{eq:X3_1}
+\end{equation}
+\vspace{1pt}
+
+Likewise, the second expression is
+
+\begin{align*}
+     s^2\overline{X}_3(s) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) + B_3(s)\overline{X}_3(s) \\
+     \iff s^2\overline{X}_3(s) - B_3(s)\overline{X}_3(s) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) \\
+     \iff \overline{X}_3(s)\left(s^2 - B_3(s)\right) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)
+\end{align*}
+\vspace{1pt}
+
+Therefore,
+
+\begin{equation}
+     \overline{X}_3(s) &= \frac{B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)}{s^2 - B_3(s)} \label{eq:X3_2}
+\end{equation}
+\vspace{1pt}
+
+Equations \ref{eq:X3_1} and \ref{eq:X3_2} can now be solved simultaneously
+
+\begin{align*}
+     \frac{s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)}{A_3(s)} \label{eq:X3_1} &= \frac{B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)}{s^2 - B_3(s)} \label{eq:X3_2} \\
+     \iff \left(s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)\right) \left(s^2 - B_3(s)\right) &= A_3(s)B_1(s)\overline{V}(s) + A_3(s)B_2(s)\overline{X}_1(s) \\
+     \iff \overline{X}_1(s)\left(s^2 - A_1(s) - sA_2(s)\right) \left(s^2 - B_3(s)\right) - A_3(s)B_2(s)\overline{X}_1(s) &= A_3(s)B_1(s)\overline{V}(s) \\
+     \iff \overline{X}_1(s)\left[\left(s^2 - A_1(s) - sA_2(s)\right) \left(s^2 - B_3(s)\right) - A_3(s)B_2(s)\right] &= A_3(s)B_1(s)\overline{V}(s)
+\end{align*}
+\vspace{1pt}
+
+Therefore,
+
+\begin{equation}
+     \overline{X}_1(s) = \frac{A_3(s)B_1(s)\overline{V}(s)}{\bigl(s^2 - sA_2(s) - A_1(s)\bigr) \bigl(s^2 - B_3(s)\bigr) - A_3(s)B_2(s)} \label{eq:X1}
+\end{equation}
+\vspace{1pt}
+
+Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and $\overline{V}(s)$ is the output, it can be seen that the transfer function of the system is
+
+\begin{empheq}[box={\setlength{\fboxsep}{10pt}\colorbox{grey}}]{equation}\label{eq:SysTF}
+% * <Jonathan Tutty> 15:45:52 07 Dec 2020 UTC+0000:
+% I added the "empheq" package to emphasise the most important equations as I think it makes the report a bit easier to read.
+     G(s) = \frac{\overline{X}_1(s)}{\overline{V}(s)} = \frac{A_3(s)B_1(s)}{\bigl(s^2 - sA_2(s) - A_1(s)\bigr) \bigl(s^2 - B_3(s)\bigr) - A_3(s)B_2(s)}
+\end{empheq}
+
+
+\end{document}
+
+
+
+

@@ -2,8 +2,8 @@ import sympy as sym
 import numpy as np
 
 # Define all necessary symbols
-x1, x2, x3, x4, x1e, x2e, x3e, x4e, c, m, g, k, d, b, theta, V, Ve, R, L0, L1, sig, alp = sym.symbols(
-    'x1, x2, x3, x4, x1e, x2e, x3e, x4e, c, m, g, k, d, b, theta, V, Ve R, L0, L1, sig, alp')
+x1, x2, x3, x1e, x2e, x3e, c, m, g, k, d, b, theta, V, Ve, R, L0, L1, sig, alp = sym.symbols(
+    'x1, x2, x3, x4, x1e, x2e, x3e, c, m, g, k, d, b, theta, V, Ve R, L0, L1, sig, alp')
 
 X1, V, p, u, s, t, sig1, d, q = sym.symbols('X1, V, p, u, s, t, sig1, d, q')
 G = p*u
@@ -17,8 +17,7 @@ print()
 """
 x1. = x2
 x2. = phi
-x3. = x4
-x4. = psi
+x3. = psi
 """
 # Define phi
 phi = (c * x3 ** 2 / (sig - x1) ** 2) - (c*x3e**2 / (sig-x1e)**2) - k * (x1-x1e) - b * (x2-x2e)
@@ -35,7 +34,7 @@ d_phi_x1 = phi.diff(x1)
 d_phi_x2 = phi.diff(x2)
 d_phi_x3 = phi.diff(x3)
 
-print()
+#print()
 
 # Differentiate psi wrt V, x1, x3
 d_psi_V = psi.diff(V)
@@ -65,9 +64,9 @@ d_phi_x2_eq = evaluate_at_equilibrium_phi(d_phi_x2)
 d_phi_x3_eq = evaluate_at_equilibrium_phi(d_phi_x3)
 
 # Evaluate psi at equilibrium point
-# d_psi_V_eq = evaluate_at_equilibrium_psi(d_psi_V)
-# d_psi_x1_eq = evaluate_at_equilibrium_psi(d_psi_x1)
-# d_psi_x3_eq = evaluate_at_equilibrium_psi(d_psi_x3)
+d_psi_V_eq = evaluate_at_equilibrium_psi(d_psi_V)
+d_psi_x1_eq = evaluate_at_equilibrium_psi(d_psi_x1)
+d_psi_x3_eq = evaluate_at_equilibrium_psi(d_psi_x3)
 
 
 # Print partial derivatives of phi
@@ -88,6 +87,3 @@ print('d_psi_x2:')
 sym.pprint(d_psi_x3)
 
 # End
-# Simon added this code
-# John is commenting to test Git
-# Simon is commenting to test Git

@@ -3,7 +3,7 @@ import numpy as np
 
 # Define all necessary symbols
 x1, x2, x3, x1e, x2e, x3e, c, m, g, k, d, b, theta, V, Ve, R, L0, L1, sig, alp = sym.symbols(
-    'x1, x2, x3, x4, x1e, x2e, x3e, c, m, g, k, d, b, theta, V, Ve R, L0, L1, sig, alp')
+    'x1, x2, x3, x1e, x2e, x3e, c, m, g, k, d, b, theta, V, Ve, R, L0, L1, sig, alp')
 
 X1, V, p, u, s, t, sig1, d, q = sym.symbols('X1, V, p, u, s, t, sig1, d, q')
 G = p*u
@@ -55,7 +55,7 @@ def evaluate_at_equilibrium_psi(f):
     This function evaluates the equation
     at the V=0, x1=0 and x3=0
     """
-    return f.subs()
+    return f.subs([])
 
 
 # Evaluate phi at equilibrium point

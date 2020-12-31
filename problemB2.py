@@ -3,50 +3,52 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class Car:
+class WoodenBall:
 
     def __init__(self,
-                 radius=0.125,                  # r
-                 resistance=53,                 # R
+                 m=0.425,                    # m
+                 g=9.81,                  # g
+                 d=0.42,           # d
+                 delta=0.65,          # delta
+                 r=0.125,                  # r
+                 R=53,                 # R
                  nominal_inductance=0.120,      # L_0
                  inductance_constant=0.25,      # L_1
-                 inductance_exp_constant=1.2,   # alpha
-                 electromagnet_constant=6.815,  # c/1000 so it is in terms of kg
-                 spring_stiffness=1880,         # k
-                 damper_coeff=10.4,             # b
+                 alpha=1.2,   # alpha
+                 c=6.815,  # c/1000 so it is in terms of kg
+                 k=1880,         # k
+                 b=10.4,             # b
                  phi=42,                        # phi angle
+                 v=36.04,                 # V
+                 x_1_position=0.45,             # x_1
+                ):
 
-                 length=2.3,        # set car length = 2.3m as per requirement
-                 velocity=5,        # set velocity to 5ms^-1
-                 x_position=0.,
-                 y_position=0.3,
-                 pose=np.deg2rad(5)):          # pose of 5 deg converted to rads
-        self.__length = length
-        self. __velocity = velocity
-        self.__x_position = x_position
-        self.__y_position = y_position
-        self.__pose_initial = pose
-
-        self.__radius = radius
-        self.__resistance = resistance
+        self.__mass = m
+        self.__gravity = g
+        self.__natural_lenth = d
+        self.__magnet_position = delta
+        self.__radius = r
+        self.__resistance = R
         self.__nominal_inductance = nominal_inductance
         self.__inductance_constant = inductance_constant
-        self.__inductance_exp_constant = inductance_exp_constant
-        self.__electromagnet_constant = electromagnet_constant
-        self.__spring_stiffness = spring_stiffness
-        self.__damper_coeff = damper_coeff
+        self.__inductance_exp_constant = alpha
+        self.__electromagnet_constant = c
+        self.__spring_stiffness = k
+        self.__damper_coeff = b
         self.__phi = phi
+        self.__voltage = v
 
 
-    def move(self, steering_angle, dt):         # where dt denotes time interval
+    def move(self, x_1_position, dt):         # where dt denotes time interval
 
         # STEP 1: Define the system dynamics
         def system_dynamics(_t,z):
-            # Define the system dynamics given in eqns. 2.1a-c
-            theta = z[2]    # theta is third part of the function (x,y,theta)
-            return [self.__velocity * np.cos(theta),
-                    self.__velocity * np.sin(theta),
-                    self.__velocity * np.tan(steering_angle) / self.__length]
+            x_2=z[1]
+            x_3=z[2]
+            return [x_2,
+                    (5 / 7 * self.__mass) * ((self.__electromagnet_constant * (x_3 ** 2) / (self.__magnet_position - x_1_position) ** 2) + (self.__mass * self.__gravity * np.sin(self.__phi)) - (self.__damper_coeff * x_2) - (self.__spring_stiffness*(x_1_position - self.__natural_lenth))),
+                    (self.__voltage - (x_3 * self.__resistance)) / (self.__nominal_inductance + (self.__inductance_constant * np.exp(-self.__inductance_exp_constant*(self.__magnet_position - self.__x_position))))
+                    ]
 
         # STEP 2: Define the initial conditions, z(0)
         z_initial = [self.__x_position,
@@ -91,5 +93,5 @@ class Car:
 # Declare car with steering angle -2 deg for time 2s
 # Negative angle as it is clockwise
 # Frame of reference determines anticlockwise as +ve
-ronald = Car()
-ronald.move(np.deg2rad(-2), 2)   # 2 deg converted to rads
+ronald = WoodenBall()
+ronald.move(45, 2)   # 2 deg converted to rads

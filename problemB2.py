@@ -79,21 +79,21 @@ class WoodenBall:
         plt.plot(solution.t, solution.y[0].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('x (m)')
+        plt.ylabel('x_1 (m)')
         plt.show()
 
         # plot y vs time
         plt.plot(solution.t, solution.y[1].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('y (m)')
+        plt.ylabel('x_2')
         plt.show()
 
         # plot theta vs time
         plt.plot(solution.t, solution.y[2].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('\u03F4 (radians)')
+        plt.ylabel('x_3')
         plt.show()
 
 
@@ -101,4 +101,4 @@ class WoodenBall:
 # Negative angle as it is clockwise
 # Frame of reference determines anticlockwise as +ve
 ronald = WoodenBall()
-ronald.move(45, 2)   # 2 deg converted to rads
+ronald.move(45, 0.2)   # 2 deg converted to rads

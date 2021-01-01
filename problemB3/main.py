@@ -14,7 +14,7 @@ A_2 = -(5 * b) / (7 * m)
 A_3 = (10 * c * x3_eq) / (7 * m * ((delta - x1_eq) ** 2))
 B_1 = 1 / (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq))))
 B_2 = -(L_1 * alpha * ((-R * x3_eq) + V_e) * np.exp(-alpha * (delta - x1_eq))) / (
-            (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq)))) ** 2)
+        (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq)))) ** 2)
 B_3 = -R / (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq))))
 
 # State values of given parameters
@@ -39,10 +39,18 @@ x3_eq_eqn = V_e / R
 x3_eq_value = x3_eq_eqn.subs([(V_e, V_e_value), (R, R_value)])
 
 # Substitute values of the constants into the equations for A_1 -> B_3
-a_value = a.subs([(M, M_value), (m, m_value)])
-b_value = b.subs([(M, M_value), (m, m_value), (g, g_value)])
-c_value = c.subs([(M, M_value), (m, m_value), (g, g_value), (ell, ell_value)])
-d_value = d.subs([(M, M_value), (m, m_value), (g, g_value), (ell, ell_value)])
+A_1_value = A_1.subs(
+    [(m, m_value), (c, c_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value), (k, k_value)])
+A_2_value = A_2.subs([(b, b_value), (m, m_value)])
+A_3_value = A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)])
+B_1_value = B_1.subs(
+    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)])
+B_2_value = B_1.subs(
+    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
+     (x3_eq, x3_eq_value), (V_e, V_e_value)])
+B_3_value = B_1.subs(
+    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
+     (R, R_value)])
 
 # Declare additional symbols from the transfer function
 s, t = sym.symbols('s, t')

@@ -1,21 +1,19 @@
 import sympy as sym
-import numpy as np
 
 # Define all involved symbolic variables
 # constants
 m, g, d, delta, r, R, L_0, L_1, alpha, c, k, b, phi = sym.symbols('m, g, d, delta, r, R, L_0, L_1, alpha, c, k, b, phi')
-
 # system variables
 x1_eq, x2_eq, x3_eq, V_e = sym.symbols('x1_eq, x2_eq, x3_eq, V_e')
 
-# Declare determined values of a-d
+# Declare determined values of A1 -> B3
 A_1 = (5 / (7 * m)) * ((2 * c * (x3_eq ** 2) / (delta - x1_eq) ** 3) - k)
 A_2 = -(5 * b) / (7 * m)
 A_3 = (10 * c * x3_eq) / (7 * m * ((delta - x1_eq) ** 2))
-B_1 = 1 / (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq))))
-B_2 = -(L_1 * alpha * ((-R * x3_eq) + V_e) * np.exp(-alpha * (delta - x1_eq))) / (
-        (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq)))) ** 2)
-B_3 = -R / (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq))))
+B_1 = 1 / (L_0 + (L_1 * sym.exp(-alpha * (delta - x1_eq))))
+B_2 = -(L_1 * alpha * ((-R * x3_eq) + V_e) * sym.exp(-alpha * (delta - x1_eq))) / (
+        (L_0 + (L_1 * sym.exp(-alpha * (delta - x1_eq)))) ** 2)
+B_3 = -R / (L_0 + (L_1 * sym.exp(-alpha * (delta - x1_eq))))
 
 # State values of given parameters
 m_value = 0.425
@@ -30,9 +28,10 @@ alpha_value = 1.2
 c_value = 6.815
 k_value = 1880
 b_value = 10.4
-phi_value = 42  # SHOULD THIS BE RADS??
+phi_value = 42
 V_e_value = 36.04
 
+# State equilibrium values as determined in derivations
 x1_eq_value = 0.47861
 x2_eq_value = 0
 x3_eq_eqn = V_e / R
@@ -60,54 +59,25 @@ a, b, c, d = sym.symbols('a:d', real=True, positive=True)
 
 # Declare transfer functions G_theta and G_x
 # from derivation on additional notes 2
-G_theta = -c / (s ** 2 - d)
-G_x = ((a * s ** 2) - (a * d) + (b * c)) / (s ** 4 - (s ** 2 * d))
+G_x = (A_3_value * B_1_value) / (((s**2 - (s*A_2_value) - A_1_value) * (s - B_3_value)) - (A_3_value * B_2_value))
 
-# Perform an impulse (kick), step (push) and frequency (shake) response
+# Perform an impulse (kick), step (push)
 # Kick -> Dirac pulse: F_s = 1
 # Push -> Step response: F_s = 1/s
-# Shake -> Freq. response: F_s = 1/(s**2 + 1)
-F_s_kick = 1
-F_s_push = 1 / s
-F_s_shake = w / (s ** 2 + w ** 2)
+F_s_impulse = 1
+F_s_step = 1 / s
 
-# G_theta responses for kick, push and shake
-X3_s_kick = G_theta * F_s_kick
-x3_t_kick = sym.inverse_laplace_transform(X3_s_kick, s, t)
+# G_theta responses for kick, push
+x_s_impulse = G_x * F_s_impulse
+x_t_impulse = sym.inverse_laplace_transform(x_s_impulse, s, t)
 
-X3_s_push = G_theta * F_s_push
-x3_t_push = sym.inverse_laplace_transform(X3_s_push, s, t)
+x_s_step = G_x * F_s_step
+x_t_step = sym.inverse_laplace_transform(x_s_step, s, t)
 
-X3_s_shake = G_theta * F_s_shake
-x3_t_shake = sym.inverse_laplace_transform(X3_s_shake, s, t, w)
-
-# G_x responses for kick, push and shake
-X1_s_kick = G_x * F_s_kick
-x1_t_kick = sym.inverse_laplace_transform(X1_s_kick, s, t)
-
-X1_s_push = G_x * F_s_push
-x1_t_push = sym.inverse_laplace_transform(X1_s_push, s, t)
-
-X1_s_shake = G_x * F_s_shake
-x1_t_shake = sym.inverse_laplace_transform(X1_s_shake, s, t, w)
-
-# Print equations inc. LaTex code
-print('x3 response - kick')
-sym.pprint(x3_t_kick.simplify())
-print(sym.latex(x3_t_kick.simplify()))
-print('x3 response - push')
-sym.pprint(x3_t_push.simplify())
-print(sym.latex(x3_t_push.simplify()))
-print('x3 response - shake')
-sym.pprint(x3_t_shake.simplify())
-print(sym.latex(x3_t_shake.simplify()))
-
-print('x1 response - kick')
-sym.pprint(x1_t_kick.simplify())
-print(sym.latex(x1_t_kick.simplify()))
-print('x1 response - push')
-sym.pprint(x1_t_push.simplify())
-print(sym.latex(x1_t_push.simplify()))
-print('x1 response - shake')
-sym.pprint(x1_t_shake.simplify())
-print(sym.latex(x1_t_shake.simplify()))
+# Print impulse/step response equations inc. LaTex code
+print('x response - impulse')
+sym.pprint(x_t_impulse.simplify())
+#print(sym.latex(x_t_impulse.simplify()))
+print('x response - step')
+sym.pprint(x_t_step.simplify())
+#print(sym.latex(x_t_step.simplify()))

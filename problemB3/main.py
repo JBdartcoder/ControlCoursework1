@@ -9,7 +9,7 @@ m, g, d, delta, r, R, L_0, L_1, alpha, c, k, b, phi = sym.symbols('m, g, d, delt
 x1_eq, x2_eq, x3_eq, V_e = sym.symbols('x1_eq, x2_eq, x3_eq, V_e')
 
 # Declare determined values of a-d
-A_1 = (5 / 7 * m) * ((2 * c * (x3_eq ** 2) / (delta - x1_eq) ** 3) - k)
+A_1 = (5 / (7 * m)) * ((2 * c * (x3_eq ** 2) / (delta - x1_eq) ** 3) - k)
 A_2 = -(5 * b) / (7 * m)
 A_3 = (10 * c * x3_eq) / (7 * m * ((delta - x1_eq) ** 2))
 B_1 = 1 / (L_0 + (L_1 * np.exp(-alpha * (delta - x1_eq))))

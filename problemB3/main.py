@@ -54,45 +54,38 @@ B_3_value = B_1.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
      (R, R_value)])
 
-# Declare additional symbols from the transfer function
-s, t = sym.symbols('s, t')
-w = sym.symbols('w', real=True)  # w represents omega
-# a-d must be positive for inverse Laplace transform to function correctly
-A_1, A_2, A_3, B_1, B_2, B_3 = sym.symbols('A_1, A_2, A_3, B_1, B_2, B_3', real=True, positive=True)
+# Use A_1 -> B_3 to determine the coefficients of the numerator
+# and the denominator (from s^3 - s^0 term)
 
-# Declare transfer functions G_theta and G_x
-# from derivation on additional notes 2
-G_x = (A_3_value * B_1_value) / (((s**2 - (s*A_2_value) - A_1_value) * (s - B_3_value)) - (A_3_value * B_2_value))
-G = (A_3 * B_1) / (((s**2 - (s*A_2) - A_1) * (s - B_3)) - (A_3 * B_2))
+num_value = A_3_value * B_1_value
+s_3_den_value = 1       # coeff. of s^3
+s_2_den_value = -B_3_value - A_2_value      # coeff. of s^2
+s_1_den_value = (B_3_value * A_2_value) - A_1_value     # coeff. of s^1
+s_0_den_value = (B_3_value*A_1_value) - (A_3_value*B_2_value)       # coeff. of s^0
 
-# Perform an impulse (kick), step (push)
-# Kick -> Dirac pulse: F_s = 1
-# Push -> Step response: F_s = 1/s
-F_s_impulse = 1
-F_s_step = 1 / s
+# Declare overall numerator and denominator of transfer function
+num_Gx = [num_value]
+den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
 
-# G_theta responses for kick, push
-x_s_impulse = G_x * F_s_impulse
-x_t_impulse = sym.inverse_laplace_transform(x_s_impulse, s, t)
+# Declare the system as a transfer function signal using the numerator and denominator from above
+sys = signal.TransferFunction(num_Gx, den_Gx)
 
-x_s_step = G_x * F_s_step
-x_t_step = sym.inverse_laplace_transform(x_s_step, s, t)
-
-# Print impulse/step response equations inc. LaTex code
-print('x response - impulse')
-sym.pprint(x_t_impulse.simplify())
-#print(sym.latex(x_t_impulse.simplify()))
-print('x response - step')
-sym.pprint(x_t_step.simplify())
-#print(sym.latex(x_t_step.simplify()))
-
-t = np.linspace(0, 50, 1000)
-t, y = signal.step(G_x, T=t)
+# Plot the transfer function impulse response against time
+t = np.linspace(0, 1, 1000)   # Up to 1s, 1000 intervals
+t, y = signal.impulse(sys, T=t)
 plt.figure(1)
-
-# Plot response of G_x -> horizontal position, x vs. time
-plt.plot(x_s_impulse, t)
-plt.grid()
-plt.xlabel('Time (s)')
-plt.ylabel('x (m)')
+plt.plot(t,y,'k-',label="impulse response")
+plt.xlabel('t (seconds)')
+plt.ylabel('y(t) (unit unknown)')
+plt.legend(loc='best')
 plt.show()
+
+# Plot the transfer function step response against time
+t, y = signal.step(sys, T=t)
+plt.figure(1)
+plt.plot(t,y,'k-',label="step response")
+plt.xlabel('t (seconds)')
+plt.ylabel('y(t) (unit unknown)')
+plt.legend(loc='best')
+plt.show()
+

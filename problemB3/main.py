@@ -1,4 +1,7 @@
 import sympy as sym
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import signal
 
 # Define all involved symbolic variables
 # constants
@@ -55,11 +58,12 @@ B_3_value = B_1.subs(
 s, t = sym.symbols('s, t')
 w = sym.symbols('w', real=True)  # w represents omega
 # a-d must be positive for inverse Laplace transform to function correctly
-a, b, c, d = sym.symbols('a:d', real=True, positive=True)
+A_1, A_2, A_3, B_1, B_2, B_3 = sym.symbols('A_1, A_2, A_3, B_1, B_2, B_3', real=True, positive=True)
 
 # Declare transfer functions G_theta and G_x
 # from derivation on additional notes 2
 G_x = (A_3_value * B_1_value) / (((s**2 - (s*A_2_value) - A_1_value) * (s - B_3_value)) - (A_3_value * B_2_value))
+G = (A_3 * B_1) / (((s**2 - (s*A_2) - A_1) * (s - B_3)) - (A_3 * B_2))
 
 # Perform an impulse (kick), step (push)
 # Kick -> Dirac pulse: F_s = 1
@@ -81,3 +85,14 @@ sym.pprint(x_t_impulse.simplify())
 print('x response - step')
 sym.pprint(x_t_step.simplify())
 #print(sym.latex(x_t_step.simplify()))
+
+t = np.linspace(0, 50, 1000)
+t, y = signal.step(G_x, T=t)
+plt.figure(1)
+
+# Plot response of G_x -> horizontal position, x vs. time
+plt.plot(x_s_impulse, t)
+plt.grid()
+plt.xlabel('Time (s)')
+plt.ylabel('x (m)')
+plt.show()

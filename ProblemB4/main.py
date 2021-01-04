@@ -72,7 +72,7 @@ sys = signal.TransferFunction(num_Gx, den_Gx)
 
 # Plot the bode plot
 f1 = plt.figure()
-w, mag, phase = signal.bode(sys, np.arange(0.1, 5, 0.01).tolist())
+w, mag, phase = signal.bode(sys, np.arange(0.1, 5.0, 0.01).tolist())
 plt.semilogx(w, mag)
 plt.xlabel("freq")
 plt.ylabel("magnitude")

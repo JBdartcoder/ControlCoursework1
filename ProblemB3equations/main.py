@@ -44,10 +44,10 @@ A_2_value = A_2.subs([(b, b_value), (m, m_value)])
 A_3_value = A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)])
 B_1_value = B_1.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)])
-B_2_value = B_1.subs(
+B_2_value = B_2.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
      (x3_eq, x3_eq_value), (V_e, V_e_value)])
-B_3_value = B_1.subs(
+B_3_value = B_3.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
      (R, R_value)])
 

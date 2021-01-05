@@ -1,9 +1,6 @@
 import sympy as sym
 import matplotlib.pyplot as plt
-import numpy as np
 from scipy import signal
-from pylab import *
-import control
 
 # Define all involved symbolic variables
 # constants
@@ -58,7 +55,6 @@ B_3_value = float(B_1.subs(
 
 # Use A_1 -> B_3 to determine the coefficients of the numerator
 # and the denominator (from s^3 - s^0 term)
-
 num_value = A_3_value * B_1_value
 s_3_den_value = 1       # coeff. of s^3
 s_2_den_value = -B_3_value - A_2_value      # coeff. of s^2
@@ -70,6 +66,8 @@ num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
 print(num_Gx)
 print(den_Gx)
+
+# Declare overall transfer function system
 sys = signal.TransferFunction(num_Gx, den_Gx)
 
 # Set up and plot the bode plot
@@ -93,22 +91,3 @@ p2.set_xlabel("Frequency")
 p2.set_ylabel("Degrees")
 p2.grid(axis="x", which="both", alpha=0.4)
 plt.show()
-
-#
-# numerator = num_Gx
-# denominator = den_Gx
-# transfer_function = signal.lti(numerator, denominator)
-# w, mag, phase = signal.bode(transfer_function)
-# plt.figure()
-# plt.semilogx (w, mag) # Bode magnitude plot
-# plt.figure()
-# plt.semilogx (w, phase) # Bode phase plot
-# plt.show()
-#
-# # Plot the bode plot
-# f1 = plt.figure()
-# w, mag, phase = signal.bode(sys, np.arange(0.0000001, 1000000, 5).tolist())
-# plt.semilogx(w, mag)
-# plt.xlabel("freq")
-# plt.ylabel("magnitude")
-# plt.show()

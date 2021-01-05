@@ -2,6 +2,7 @@ import sympy as sym
 import control as C
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy import signal
 
 
 """
@@ -147,9 +148,14 @@ print(s_1_den_value)
 print(s_0_den_value)
 """
 
+"""
 # Declare overall numerator and denominator of transfer function
 num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
+"""
+
+num_Gx = [1639]
+den_Gx = [1, 181, 3919, 172943]
 
 # Declare additional symbols from the transfer function
 s, t = sym.symbols('s, t')
@@ -158,16 +164,12 @@ s, t = sym.symbols('s, t')
 G_1 = C.TransferFunction(num_Gx, den_Gx)
 
 # Declare the transfer function for the sensor - first order system
-G_2 = kappa / ((tau * s) + 1)
-# sym.pprint(G_2)
+# G_2 = kappa / ((tau * s) + 1)
+G_2 = C.TransferFunction([1], [tau, 1])
 
 # Combining the two transfer function in parallel
-G_x = G_1 / (1 + (G_1 * G_2))
-# sym.pprint(G_x.simplify())
-# print(sym.latex(G_x.simplify()))
-
-sys = sym.signal.TransferFunction(num_Gx, den_Gx)
-print(sys)
+G_x = C.parallel(G_1, G_2)
+# G_x = G_1 / (1 + (G_1 * G_2))
 
 
 def pid(kp, ki, kd):
@@ -179,9 +181,9 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 1000
-Ki = 1
-Kd = 100
+Kp = 100
+Ki = 10
+Kd = 1
 controller = -pid(Kp, Ki, Kd)
 
 t_final = 1
@@ -191,11 +193,11 @@ t_span = np.linspace(0, t_final, num_points)
 
 G_d = C.feedback(G_x, controller)
 
-t_imp, x3_imp = C.impulse_response(G_d, t_span)
+t_imp, x_imp = C.impulse_response(G_d, t_span)
 
 
-plt.plot(t_imp, x3_imp)
+plt.plot(t_imp, x_imp)
 plt.xlabel('Time (s)')
-plt.ylabel('Angle (deg)')
+plt.ylabel('')
 plt.grid()
 plt.show()

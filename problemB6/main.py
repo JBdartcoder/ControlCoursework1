@@ -153,9 +153,8 @@ print(s_0_den_value)
 num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
 """
-
-num_Gx = [1639]
-den_Gx = [1, 181, 3919, 172943]
+num_Gx = [1639.10919772563]
+den_Gx = [1., 181.298987845931, 3919.09863700501, 172943.180855727]
 
 # Declare additional symbols from the transfer function
 s, t = sym.symbols('s, t')
@@ -181,9 +180,9 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 100
-Ki = 10
-Kd = 1
+Kp = 0.01
+Ki = 0.01
+Kd = 0.01
 controller = -pid(Kp, Ki, Kd)
 
 t_final = 1

@@ -274,48 +274,50 @@ We define the functions
 
 We linearised $\phi$ at an equlibrium $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its partial derivatives with respect to $x_1, x_2$ and $x_3$ at the equlibrium point are
 
-\begin{subequations}
+\begin{subequations}\label{eq:phiDeriv}
      \begin{align}
-          \frac{\partial\phi}{\partial x_1}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right) \\
+          \frac{\partial\phi}{\partial x_1}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{5}{7 m}\left(\frac{2 c (x_3^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right) \\
           \frac{\partial\phi}{\partial x_2}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= - \frac{5 b}{7 m} \\
-          \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}
+          \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}
      \end{align}
 \end{subequations}
 
 therefore, $\phi(x_1, x_2, x_3)$ can be approximated by
 \begin{equation}
-     \phi(x_1, x_2, x_3) \approx \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)(x_1 - x_1^{eq}) - \frac{5 b}{7 m}(x_2 - x_2^{eq}) + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}(x_3 - x_3^{eq})
+     \phi(x_1, x_2, x_3) \approx \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right)(x_1 - x_1^{eq}) - \frac{5 b}{7 m}(x_2 - x_2^{eq}) + \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}(x_3 - x_3^{eq})
 \end{equation}
 
 We linearised $\psi$ at an equlibrium $(V^{eq}, x_1^{eq}, x_3^{eq})$. Its partial derivatives with respect to $V, x_1$ and $x_3$ at the equlibrium point are
 
-\begin{subequations}
+\begin{subequations}\label{eq:psiDeriv}
      \begin{align}
-        \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}} \\
-          \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}} \\
-          \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}
+        \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \\
+          \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \\
+          \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}
      \end{align}
 \end{subequations}
 
 therefore, $\psi(V, x_1, x_3)$ can be approximated by
 \begin{equation}
-     \psi(V, x_1, x_3) \approx \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(V - V^{eq}) - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}(x_1 - X_1^{eq}) - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(x_3 - x_3^{eq})
+     \psi(V, x_1, x_3) \approx \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}(V - V^{eq}) - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}}(x_1 - x_1^{eq}) - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}(x_3 - x_3^{eq})
 \end{equation}
 
 N.B.: The code used to determine all the partial derivatives can be found at XYZ
 
 We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overline{x}_2 = x_2-x_2^{eq}, \overline{x}_3 = x_3-x_3^{eq}$ and $\overline{V} = V-V^{eq}$. The linearised system then becomes
 
-\begin{subequations}
+\begin{subequations}\label{eq:linear_system}
      \begin{align}
           \dot{\overline{x}}_1 &= \overline{x}_2 \\
-          \dot{\overline{x}}_2 &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)\overline{x}_1  - \frac{5 b}{7 m}\overline{x}_2 + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}\overline{x}_3\\
-          \dot{\overline{x}}_3 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{V} - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}\overline{x}_1 - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{x}_3
+          \dot{\overline{x}}_2 &= \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right)\overline{x}_1  - \frac{5 b}{7 m}\overline{x}_2 + \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}\overline{x}_3\\
+          \dot{\overline{x}}_3 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}\overline{V} - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}}\overline{x}_1 - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}\overline{x}_3
      \end{align}
 \end{subequations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Jonathan
 \subsection{Problem A5}\label{sec:a5}\hfill
+
+\setlength{\jot}{5pt} % Increases spacing between equations
 
 \begin{figure}[H]
 % * <Jonathan Tutty> 16:26:09 07 Dec 2020 UTC+0000:
@@ -337,9 +339,22 @@ The equation for the transfer function of a dynamical system is
 \end{center}
 \vspace{10pt}
 
-The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}. In order to determine $G(s)$ the Laplace transform is applied to equations \ref{eq:}. This gives
+The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}. In order to determine $G(s)$, some constants are defined for the partial derivatives calculated in equations \ref{eq:phiDeriv} and \ref{eq:psiDeriv} in order to simplify the linearised system expressed in equations \ref{eq:linear_system}
 
-\setlength{\jot}{5pt} % Increases spacing between equations
+\begin{subequations} \label{eq:SysLT}
+    \begin{align}
+         A_1 &= \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right) \label{eq:A1} \\
+         A_2 &= -\frac{5 b}{7 m} \label{eq:A2} \\
+         A_3 &= \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}} \label{eq:A3} \\
+         \intertext{and}
+         B_1 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \label{eq:B1} \\
+         B_2 &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \label{eq:B2} \\
+         B_3 &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \label{eq:B3}
+    \end{align}
+\end{subequations}
+\vspace{1pt}
+
+Then the Laplace transform is applied to equations \ref{eq:linear_system}. This gives
 
 \begin{subequations} \label{eq:SysLT}
     \begin{align}
@@ -409,6 +424,31 @@ Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and
 % smart thinking
          G(s) = \frac{\overline{X}_1(s)}{\overline{V}(s)} = \frac{A_3(s)B_1(s)}{\bigl(s^2 - sA_2(s) - A_1(s)\bigr) \bigl(s - B_3(s)\bigr) - A_3(s)B_2(s)}
 \end{empheq}
+
+\section{Part B}
+
+\subsection{Problem B1}\label{sec:b1}
+Include all info on B1 here. The stuff below relates to the ``Note" between B1 and B2:
+
+We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
+This can be done by substituing the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
+
+\begin{align}
+x &= 0.75x_{min} + 0.25 x_{max}\nonumber \\
+x &= 0.75 \bigg(d + \frac{mg \sin{\phi}}{k}\bigg) + 0.25 \delta \nonumber \\
+\intertext{therefore, substituting for the constant values:}
+x &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42 \circ)}}{1880}\bigg) + 0.25(0.65) \nonumber \\
+x &= 0.47861 \label{eqn: xvalue}
+\end{align}
+
+
+
+
+\subsection{Problem B5}\label{sec:b5}
+
+When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
+
+
 
 
 \end{document}

@@ -106,9 +106,9 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 10
+Kp = 90
 Ki = 0.1
-Kd = 0.1
+Kd = 0.09
 controller = -pid(Kp, Ki, Kd)
 
 t_final = 1

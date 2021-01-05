@@ -66,14 +66,13 @@ s_2_den_value = -B_3_value - A_2_value      # coeff. of s^2
 s_1_den_value = (B_3_value * A_2_value) - A_1_value     # coeff. of s^1
 s_0_den_value = (B_3_value*A_1_value) - (A_3_value*B_2_value)       # coeff. of s^0
 
-
+"""
 print(num_value)
 print(s_3_den_value)
 print(s_2_den_value)
 print(s_1_den_value)
 print(s_0_den_value)
-
-
+"""
 
 # Declare overall numerator and denominator of transfer function
 num_Gx = [num_value]
@@ -107,9 +106,9 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 0.001
-Ki = 0.01
-Kd = 0.01
+Kp = 10
+Ki = 0.1
+Kd = 0.1
 controller = -pid(Kp, Ki, Kd)
 
 t_final = 1
@@ -117,7 +116,7 @@ num_points = 500
 t_span = np.linspace(0, t_final, num_points)
 
 
-G_d = C.feedback(G_x, controller)
+G_d = C.feedback(G_1, controller)
 
 t_imp, x_imp = C.impulse_response(G_d, t_span)
 

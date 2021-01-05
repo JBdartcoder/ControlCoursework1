@@ -44,18 +44,18 @@ x3_eq_eqn = V_e / R
 x3_eq_value = x3_eq_eqn.subs([(V_e, V_e_value), (R, R_value)])
 
 # Substitute values of the constants into the equations for A_1 -> B_3
-A_1_value = A_1.subs(
-    [(m, m_value), (c, c_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value), (k, k_value)])
-A_2_value = A_2.subs([(b, b_value), (m, m_value)])
-A_3_value = A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)])
-B_1_value = B_1.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)])
-B_2_value = B_2.subs(
+A_1_value = float(A_1.subs(
+    [(m, m_value), (c, c_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value), (k, k_value)]))
+A_2_value = float(A_2.subs([(b, b_value), (m, m_value)]))
+A_3_value = float(A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
+B_1_value = float(B_1.subs(
+    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
+B_2_value = float(B_1.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
-     (x3_eq, x3_eq_value), (V_e, V_e_value)])
-B_3_value = B_3.subs(
+     (x3_eq, x3_eq_value), (V_e, V_e_value)]))
+B_3_value = float(B_1.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
-     (R, R_value)])
+     (R, R_value)]))
 
 # Use A_1 -> B_3 to determine the coefficients of the numerator
 # and the denominator (from s^3 - s^0 term)
@@ -74,14 +74,14 @@ print(s_1_den_value)
 print(s_0_den_value)
 """
 
-"""
+
 # Declare overall numerator and denominator of transfer function
 num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
-"""
-# I had to type in the actual numbers for the transfer function to work
-num_Gx = [1639.10919772563]
-den_Gx = [1., 181.298987845931, 3919.09863700501, 172943.180855727]
+
+# # I had to type in the actual numbers for the transfer function to work
+# num_Gx = [1639.10919772563]
+# den_Gx = [1., 181.298987845931, 3919.09863700501, 172943.180855727]
 
 # Declare additional symbols from the transfer function
 s, t = sym.symbols('s, t')

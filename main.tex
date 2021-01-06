@@ -17,6 +17,7 @@
 \usepackage{mathtools,enumerate,mathrsfs,graphicx}
 \usepackage{epstopdf}
 \usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
 
 \usepackage{latexsym}
 
@@ -428,7 +429,36 @@ Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and
 \section{Part B}
 
 \subsection{Problem B1}\label{sec:b1}
-Include all info on B1 here. The stuff below relates to the ``Note" between B1 and B2:
+Include all info on start of B1 here. The following relates to the second half of B1:
+We also need to determine the equilibrium voltage and current as a function of $x^e$. Using (\ref{1.18c}), we can determine the following:
+
+\begin{align}
+V - x_3^{eq}R &= 0 \nonumber \\
+\Leftrightarrow x_3^{eq} &= \frac{V}{R} \label{eqn: x3eq}
+\end{align}
+where $x_3^{eq}$ is the equilibrium current.
+
+Using (\ref{1.18b}), we can determine the following:
+
+\begin{align}
+\frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \nonumber \\
+\intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the value of $m$, this leads to the following conclusion:}
+c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d) &= 0 \nonumber \\
+\intertext{Substituing for the constants and given that $x_2^eq = 0$}
+\Leftrightarrow 6.815 \frac{({x_3}^{eq})^2}{(0.65 - x_1^{eq})^2} + (0.425)(9.81)\sin(42^\circ) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d) &= 0 \nonumber \\
+\Leftrightarrow 6.815 ({x_3}^{eq})^2 + 2.7898((0.65 - x_1^{eq})^2) - 1880(x_1^{eq}-0.42)((0.65 - x_1^{eq})^2) &= 0 \nolabel \\
+\Leftrightarrow 6.815 (\frac{V}{R})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
+\Leftrightarrow 6.815 (\frac{V}{53})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
+\Leftrightarrow 1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 &= \frac{6.815V^2}{2809} \nolabel \\
+\Leftrightarrow \frac{2809}{6.815}\bigg(1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 \bigg) &= V^2 \nolabel \\ 
+\Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01(x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
+\end{align}
+
+A plot of this equation indicates a maximum turning point at ....
+
+
+
+The stuff below relates to the ``Note" between B1 and B2:
 
 We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
 This can be done by substituing the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
@@ -443,12 +473,131 @@ x &= 0.47861 \label{eqn: xvalue}
 
 
 
+\subsection{Problem B2}\label{sec:b2}
+
+
+\subsection{Problem B3}\label{sec:b3}
+
+
+\subsection{Problem B4}\label{sec:b4}
+
+
+
 
 \subsection{Problem B5}\label{sec:b5}
 
 When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
 
+\section{Part C}
+
+\subsection{Probelm C1}\label{sec:c1}
+The following function is defined in the Problem Description:
+\begin{align}
+f(t) = \ln t^3, t>0 \label{eqn: C1function}
+\end{align}
+The general form of the Laplace Transform is as follows,
+\begin{align}
+F(s) = (\mathscr{L}f)(s) =  \int_{0}^{\infty} e^{-st}f(t) \,dt  \label{eqn: Laplace}
+\end{align}
+Application of this to our function, $f(t)$ leads to the following:
+\begin{align}
+F(s) &= \int_{0}^{\infty} e^{-st} \ln t^3 \,dt, s>0  \nolabel \\
+\Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-st} 3\ln t \,dt  \label{eqn: C1beginning}
+\end{align}
+Integrating (\ref{eqn: C1function}) by parts will not simplify the integral - rather it will lead to the contrary. Instead a substitution method can be applied as follows.
+\begin{align}
+\intertext{let}
+u &=st \label{eqn: C1u} \\
+\Leftrightarrow \frac{\mathrm{d}u}{\mathrm{d}t} &= s \nolabel \\
+\Leftrightarrow \mathrm{d}t &= \frac{1}{s} \mathrm{d}u \label{eqn: c1dt}
+\end{align}
+The limits of the integral also need to be considered:
+\begin{align*}
+\intertext{from (\ref{eqn: C1u}), when}
+t &= 0 \\
+\intertext{then,}
+u &= 0 
+\end{align*}
+Also, when
+\begin{align*}
+t \rightarrow \infty \\
+\intertext{then,}
+u \rightarrow \infty \\
+\end{align*}
+This indicates that the limits of the integral remain unchanged, provided $s>0$ as stated previously.
+\begin{align}
+\Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-u} \textcolor{red}{3}\ln \bigg(\frac{u}{s}\bigg) \textcolor{red}{\frac{1}{s}} \,du  \nonumber \\
+&= \textcolor{red}{\frac{3}{s}} \int_{0}^{\infty} e^{-u} \ln \bigg(\frac{u}{s}\bigg) \,du  \nonumber \\
+&= \frac{3}{s} \int_{0}^{\infty} e^{-u} (\ln u - \ln s) \,du  \nonumber \\
+&= \frac{3}{s} \bigg( \int_{0}^{\infty} e^{-u} \ln u \,du - \ln s  \int_{0}^{\infty} e^{-u} \,du \bigg) \nonumber \\
+&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) + (\ln s) e^{-u} \bigg|_0^\infty \bigg) \nonumber \\
+&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) + (\ln s) (0-1) \bigg) \nonumber \\
+F(s)&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) - \ln s \bigg) \label{eqn: C1halfway}
+\end{align}
+Now, we need to introduce the Euler-Mascheroni constant which is defined as follows:
+\begin{align}
+\gamma = -\int_{0}^{\infty} e^{-x} \ln x \,dx \label{eqn: Euler-Mascheroni}
+\end{align}
+Application of (\ref{eqn: Euler-Mascheroni}) to (\ref{eqn: C1halfway}):
+\begin{align}
+F(s) &= \frac{3}{s} \bigg( -\gamma - \ln s \bigg) \nonumber \\
+F(s) &= \frac{-3(\gamma + \ln s)}{s}, s>0 \label{eqn: C1final}
+\end{align}
+which is the Laplace transform of $f(t)$.
 
 
+\subsection{Probelm C2}\label{sec:c2}
+
+\subsection{Probelm C3}\label{sec:c3}
+
+It is given that
+
+\begin{equation}\label{eq:pntwise_lap}
+    \lim_{n \to \infty} \big(\lap\left(f_n\right)\big) = \lap(f)
+\end{equation}
+\vspace{1pt}
+
+Let $f_n(t)$ be the sequence of time-domain functions, where
+
+\begin{equation}
+     f_n(t) = \frac{t}{n}
+\end{equation}
+\vspace{1pt}
+
+then
+
+\begin{align*}
+     \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
+     \therefore f(t) &= 0
+\end{align*}
+\vspace{1pt}
+
+therefore, $f_n(t)$ converges pointwise to $f(t)$ for all $t\geq0$
+
+\begin{align*}
+    F_n(s) &= \lap\left(f_n\right) \\
+    &= \lap\left(\frac{t}{n}\right) \\
+    &= \frac{1}{n} \lap\left(t\right) \\
+    &= \frac{1}{n} \cdot \frac{1}{s^2} \\
+    &= \frac{1}{ns^2}
+\end{align*}
+
+therefore, all $f_n(t)$ have a Laplace transform $F_n(s)$
+
+\begin{equation}
+     F(s) = \lap(f) = \lap(0) = 0
+\end{equation}
+
+therefor, f(t) has a Laplace transform F(s) \\
+
+It can also be seen that this follows the rule in equation \ref{eq:pntwise_lap}, since
+
+\begin{equation*}
+     \lim_{n \to \infty} \left(\frac{1}{ns^2}\right) = \frac{1}{s^2} \lim_{n \to \infty} \left(\frac{1}{n}\right) \to 0
+\end{equation*}
 
 \end{document}
+
+
+
+

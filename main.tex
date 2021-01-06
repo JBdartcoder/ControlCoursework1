@@ -17,6 +17,7 @@
 \usepackage{mathtools,enumerate,mathrsfs,graphicx}
 \usepackage{epstopdf}
 \usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
 
 \usepackage{latexsym}
 
@@ -274,48 +275,50 @@ We define the functions
 
 We linearised $\phi$ at an equlibrium $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its partial derivatives with respect to $x_1, x_2$ and $x_3$ at the equlibrium point are
 
-\begin{subequations}
+\begin{subequations}\label{eq:phiDeriv}
      \begin{align}
-          \frac{\partial\phi}{\partial x_1}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right) \\
+          \frac{\partial\phi}{\partial x_1}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{5}{7 m}\left(\frac{2 c (x_3^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right) \\
           \frac{\partial\phi}{\partial x_2}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= - \frac{5 b}{7 m} \\
-          \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}
+          \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}
      \end{align}
 \end{subequations}
 
 therefore, $\phi(x_1, x_2, x_3)$ can be approximated by
 \begin{equation}
-     \phi(x_1, x_2, x_3) \approx \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)(x_1 - x_1^{eq}) - \frac{5 b}{7 m}(x_2 - x_2^{eq}) + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}(x_3 - x_3^{eq})
+     \phi(x_1, x_2, x_3) \approx \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right)(x_1 - x_1^{eq}) - \frac{5 b}{7 m}(x_2 - x_2^{eq}) + \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}(x_3 - x_3^{eq})
 \end{equation}
 
 We linearised $\psi$ at an equlibrium $(V^{eq}, x_1^{eq}, x_3^{eq})$. Its partial derivatives with respect to $V, x_1$ and $x_3$ at the equlibrium point are
 
-\begin{subequations}
+\begin{subequations}\label{eq:psiDeriv}
      \begin{align}
-        \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}} \\
-          \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}} \\
-          \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}
+        \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \\
+          \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \\
+          \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}
      \end{align}
 \end{subequations}
 
 therefore, $\psi(V, x_1, x_3)$ can be approximated by
 \begin{equation}
-     \psi(V, x_1, x_3) \approx \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(V - V^{eq}) - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}(x_1 - X_1^{eq}) - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}(x_3 - x_3^{eq})
+     \psi(V, x_1, x_3) \approx \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}(V - V^{eq}) - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}}(x_1 - x_1^{eq}) - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}(x_3 - x_3^{eq})
 \end{equation}
 
 N.B.: The code used to determine all the partial derivatives can be found at XYZ
 
 We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overline{x}_2 = x_2-x_2^{eq}, \overline{x}_3 = x_3-x_3^{eq}$ and $\overline{V} = V-V^{eq}$. The linearised system then becomes
 
-\begin{subequations}
+\begin{subequations}\label{eq:linear_system}
      \begin{align}
           \dot{\overline{x}}_1 &= \overline{x}_2 \\
-          \dot{\overline{x}}_2 &= \frac{5}{7 m}\left(\frac{2 c x_{3}^{2}}{\left(\delta - x_{1}\right)^{3}} - k\right)\overline{x}_1  - \frac{5 b}{7 m}\overline{x}_2 + \frac{10 c x_{3}}{7 m \left(\delta - x_{1}\right)^{2}}\overline{x}_3\\
-          \dot{\overline{x}}_3 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{V} - \frac{L_{1} \alpha \left(- R x_{3} + V\right) e^{- \alpha \left(\delta - x_{1}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}\right)^{2}}\overline{x}_1 - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}\right)}}\overline{x}_3
+          \dot{\overline{x}}_2 &= \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right)\overline{x}_1  - \frac{5 b}{7 m}\overline{x}_2 + \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}\overline{x}_3\\
+          \dot{\overline{x}}_3 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}\overline{V} - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}}\overline{x}_1 - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}\overline{x}_3
      \end{align}
 \end{subequations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Jonathan
 \subsection{Problem A5}\label{sec:a5}\hfill
+
+\setlength{\jot}{5pt} % Increases spacing between equations
 
 \begin{figure}[H]
 % * <Jonathan Tutty> 16:26:09 07 Dec 2020 UTC+0000:
@@ -337,9 +340,22 @@ The equation for the transfer function of a dynamical system is
 \end{center}
 \vspace{10pt}
 
-The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}. In order to determine $G(s)$ the Laplace transform is applied to equations \ref{eq:}. This gives
+The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}. In order to determine $G(s)$, some constants are defined for the partial derivatives calculated in equations \ref{eq:phiDeriv} and \ref{eq:psiDeriv} in order to simplify the linearised system expressed in equations \ref{eq:linear_system}
 
-\setlength{\jot}{5pt} % Increases spacing between equations
+\begin{subequations} \label{eq:SysLT}
+    \begin{align}
+         A_1 &= \frac{5}{7 m}\left(\frac{2 c (x_{3}^{eq})^{2}}{\left(\delta - x_{1}^{eq}\right)^{3}} - k\right) \label{eq:A1} \\
+         A_2 &= -\frac{5 b}{7 m} \label{eq:A2} \\
+         A_3 &= \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}} \label{eq:A3} \\
+         \intertext{and}
+         B_1 &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \label{eq:B1} \\
+         B_2 &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \label{eq:B2} \\
+         B_3 &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \label{eq:B3}
+    \end{align}
+\end{subequations}
+\vspace{1pt}
+
+Then the Laplace transform is applied to equations \ref{eq:linear_system}. This gives
 
 \begin{subequations} \label{eq:SysLT}
     \begin{align}
@@ -410,6 +426,175 @@ Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and
          G(s) = \frac{\overline{X}_1(s)}{\overline{V}(s)} = \frac{A_3(s)B_1(s)}{\bigl(s^2 - sA_2(s) - A_1(s)\bigr) \bigl(s - B_3(s)\bigr) - A_3(s)B_2(s)}
 \end{empheq}
 
+\section{Part B}
+
+\subsection{Problem B1}\label{sec:b1}
+Include all info on start of B1 here. The following relates to the second half of B1:
+We also need to determine the equilibrium voltage and current as a function of $x^e$. Using (\ref{1.18c}), we can determine the following:
+
+\begin{align}
+V - x_3^{eq}R &= 0 \nonumber \\
+\Leftrightarrow x_3^{eq} &= \frac{V}{R} \label{eqn: x3eq}
+\end{align}
+where $x_3^{eq}$ is the equilibrium current.
+
+Using (\ref{1.18b}), we can determine the following:
+
+\begin{align}
+\frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \nonumber \\
+\intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the value of $m$, this leads to the following conclusion:}
+c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d) &= 0 \nonumber \\
+\intertext{Substituing for the constants and given that $x_2^eq = 0$}
+\Leftrightarrow 6.815 \frac{({x_3}^{eq})^2}{(0.65 - x_1^{eq})^2} + (0.425)(9.81)\sin(42^\circ) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d) &= 0 \nonumber \\
+\Leftrightarrow 6.815 ({x_3}^{eq})^2 + 2.7898((0.65 - x_1^{eq})^2) - 1880(x_1^{eq}-0.42)((0.65 - x_1^{eq})^2) &= 0 \nolabel \\
+\Leftrightarrow 6.815 (\frac{V}{R})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
+\Leftrightarrow 6.815 (\frac{V}{53})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
+\Leftrightarrow 1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 &= \frac{6.815V^2}{2809} \nolabel \\
+\Leftrightarrow \frac{2809}{6.815}\bigg(1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 \bigg) &= V^2 \nolabel \\ 
+\Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01(x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
+\end{align}
+
+A plot of this equation indicates a maximum turning point at ....
+
+
+
+The stuff below relates to the ``Note" between B1 and B2:
+
+We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
+This can be done by substituing the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
+
+\begin{align}
+x &= 0.75x_{min} + 0.25 x_{max}\nonumber \\
+x &= 0.75 \bigg(d + \frac{mg \sin{\phi}}{k}\bigg) + 0.25 \delta \nonumber \\
+\intertext{therefore, substituting for the constant values:}
+x &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42 \circ)}}{1880}\bigg) + 0.25(0.65) \nonumber \\
+x &= 0.47861 \label{eqn: xvalue}
+\end{align}
+
+
+
+\subsection{Problem B2}\label{sec:b2}
+
+
+\subsection{Problem B3}\label{sec:b3}
+
+
+\subsection{Problem B4}\label{sec:b4}
+
+
+
+
+\subsection{Problem B5}\label{sec:b5}
+
+When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
+
+\section{Part C}
+
+\subsection{Probelm C1}\label{sec:c1}
+The following function is defined in the Problem Description:
+\begin{align}
+f(t) = \ln t^3, t>0 \label{eqn: C1function}
+\end{align}
+The general form of the Laplace Transform is as follows,
+\begin{align}
+F(s) = (\mathscr{L}f)(s) =  \int_{0}^{\infty} e^{-st}f(t) \,dt  \label{eqn: Laplace}
+\end{align}
+Application of this to our function, $f(t)$ leads to the following:
+\begin{align}
+F(s) &= \int_{0}^{\infty} e^{-st} \ln t^3 \,dt, s>0  \nolabel \\
+\Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-st} 3\ln t \,dt  \label{eqn: C1beginning}
+\end{align}
+Integrating (\ref{eqn: C1function}) by parts will not simplify the integral - rather it will lead to the contrary. Instead a substitution method can be applied as follows.
+\begin{align}
+\intertext{let}
+u &=st \label{eqn: C1u} \\
+\Leftrightarrow \frac{\mathrm{d}u}{\mathrm{d}t} &= s \nolabel \\
+\Leftrightarrow \mathrm{d}t &= \frac{1}{s} \mathrm{d}u \label{eqn: c1dt}
+\end{align}
+The limits of the integral also need to be considered:
+\begin{align*}
+\intertext{from (\ref{eqn: C1u}), when}
+t &= 0 \\
+\intertext{then,}
+u &= 0 
+\end{align*}
+Also, when
+\begin{align*}
+t \rightarrow \infty \\
+\intertext{then,}
+u \rightarrow \infty \\
+\end{align*}
+This indicates that the limits of the integral remain unchanged, provided $s>0$ as stated previously.
+\begin{align}
+\Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-u} \textcolor{red}{3}\ln \bigg(\frac{u}{s}\bigg) \textcolor{red}{\frac{1}{s}} \,du  \nonumber \\
+&= \textcolor{red}{\frac{3}{s}} \int_{0}^{\infty} e^{-u} \ln \bigg(\frac{u}{s}\bigg) \,du  \nonumber \\
+&= \frac{3}{s} \int_{0}^{\infty} e^{-u} (\ln u - \ln s) \,du  \nonumber \\
+&= \frac{3}{s} \bigg( \int_{0}^{\infty} e^{-u} \ln u \,du - \ln s  \int_{0}^{\infty} e^{-u} \,du \bigg) \nonumber \\
+&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) + (\ln s) e^{-u} \bigg|_0^\infty \bigg) \nonumber \\
+&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) + (\ln s) (0-1) \bigg) \nonumber \\
+F(s)&= \frac{3}{s} \bigg(\bigg( \int_{0}^{\infty} e^{-u} \ln u \,du \bigg) - \ln s \bigg) \label{eqn: C1halfway}
+\end{align}
+Now, we need to introduce the Euler-Mascheroni constant which is defined as follows:
+\begin{align}
+\gamma = -\int_{0}^{\infty} e^{-x} \ln x \,dx \label{eqn: Euler-Mascheroni}
+\end{align}
+Application of (\ref{eqn: Euler-Mascheroni}) to (\ref{eqn: C1halfway}):
+\begin{align}
+F(s) &= \frac{3}{s} \bigg( -\gamma - \ln s \bigg) \nonumber \\
+F(s) &= \frac{-3(\gamma + \ln s)}{s}, s>0 \label{eqn: C1final}
+\end{align}
+which is the Laplace transform of $f(t)$.
+
+
+\subsection{Probelm C2}\label{sec:c2}
+
+\subsection{Probelm C3}\label{sec:c3}
+
+It is given that
+
+\begin{equation}\label{eq:pntwise_lap}
+    \lim_{n \to \infty} \big(\lap\left(f_n\right)\big) = \lap(f)
+\end{equation}
+\vspace{1pt}
+
+Let $f_n(t)$ be the sequence of time-domain functions, where
+
+\begin{equation}
+     f_n(t) = \frac{t}{n}
+\end{equation}
+\vspace{1pt}
+
+then
+
+\begin{align*}
+     \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
+     \therefore f(t) &= 0
+\end{align*}
+\vspace{1pt}
+
+therefore, $f_n(t)$ converges pointwise to $f(t)$ for all $t\geq0$
+
+\begin{align*}
+    F_n(s) &= \lap\left(f_n\right) \\
+    &= \lap\left(\frac{t}{n}\right) \\
+    &= \frac{1}{n} \lap\left(t\right) \\
+    &= \frac{1}{n} \cdot \frac{1}{s^2} \\
+    &= \frac{1}{ns^2}
+\end{align*}
+
+therefore, all $f_n(t)$ have a Laplace transform $F_n(s)$
+
+\begin{equation}
+     F(s) = \lap(f) = \lap(0) = 0
+\end{equation}
+
+therefor, f(t) has a Laplace transform F(s) \\
+
+It can also be seen that this follows the rule in equation \ref{eq:pntwise_lap}, since
+
+\begin{equation*}
+     \lim_{n \to \infty} \left(\frac{1}{ns^2}\right) = \frac{1}{s^2} \lim_{n \to \infty} \left(\frac{1}{n}\right) \to 0
+\end{equation*}
 
 \end{document}
 

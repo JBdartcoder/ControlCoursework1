@@ -315,7 +315,6 @@ We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overli
      \end{align}
 \end{subequations}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Jonathan
 \subsection{Problem A5}\label{sec:a5}\hfill
 
 \setlength{\jot}{5pt} % Increases spacing between equations
@@ -438,37 +437,50 @@ V - x_3^{eq}R &= 0 \nonumber \\
 \end{align}
 where $x_3^{eq}$ is the equilibrium current.
 
-Using (\ref{1.18b}), we can determine the following:
+From (\ref{1.18b}), which is rewritten below for clarity, we can determine the following:
 
 \begin{align}
 \frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \nonumber \\
-\intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the value of $m$, this leads to the following conclusion:}
+\intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the constant value of $m$, this leads to the following conclusion:}
 c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d) &= 0 \nonumber \\
-\intertext{Substituing for the constants and given that $x_2^eq = 0$}
+\intertext{Substituing for the constants, and given that from (\ref{1.18a})$x_2^eq = 0$}
 \Leftrightarrow 6.815 \frac{({x_3}^{eq})^2}{(0.65 - x_1^{eq})^2} + (0.425)(9.81)\sin(42^\circ) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d) &= 0 \nonumber \\
-\Leftrightarrow 6.815 ({x_3}^{eq})^2 + 2.7898((0.65 - x_1^{eq})^2) - 1880(x_1^{eq}-0.42)((0.65 - x_1^{eq})^2) &= 0 \nolabel \\
-\Leftrightarrow 6.815 (\frac{V}{R})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
-\Leftrightarrow 6.815 (\frac{V}{53})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) - 1820.78x_1^{eq} + 333.606 &= 0 \nolabel \\
-\Leftrightarrow 1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 &= \frac{6.815V^2}{2809} \nolabel \\
-\Leftrightarrow \frac{2809}{6.815}\bigg(1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 \bigg) &= V^2 \nolabel \\ 
+\Leftrightarrow 6.815 ({x_3}^{eq})^2 + 2.7898((0.65 - x_1^{eq})^2) - 1880(x_1^{eq}-0.42)((0.65 - x_1^{eq})^2) &= 0 \nonumber \\
+\Leftrightarrow 6.815 (\frac{V}{R})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) \nonumber \\ - 1820.78x_1^{eq} + 333.606 &= 0 \nonumber \\
+\Leftrightarrow 6.815 (\frac{V}{53})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) \nonumber \\ - 1820.78x_1^{eq} + 333.606 &= 0 \nonumber \\
+\Leftrightarrow 1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 &= \frac{6.815V^2}{2809} \nonumber \\
+\Leftrightarrow \frac{2809}{6.815}\bigg(1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 \bigg) &= V^2 \nonumber \\ 
 \Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01(x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
 \end{align}
+A plot of this equation is shown below.
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{figures/ProblemB1}
+\caption{A plot to determine the maximum equilibrium voltage, and the corresponding $x$-position.}
+\label{fig:B1plot}
+\end{figure}
 
-A plot of this equation indicates a maximum turning point at ....
+From the plot, we can see that the maximum equilibrium voltage value is $37.0111$ V. The corresponding $x$-position where this maximum voltage occurs is $0.4976$ m.
 
-
-
-The stuff below relates to the ``Note" between B1 and B2:
 
 We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
-This can be done by substituing the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
+This can be done by substituting the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
 
 \begin{align}
 x &= 0.75x_{min} + 0.25 x_{max}\nonumber \\
-x &= 0.75 \bigg(d + \frac{mg \sin{\phi}}{k}\bigg) + 0.25 \delta \nonumber \\
+x_1^{eq} &= 0.75 \bigg(d + \frac{mg \sin{\phi}}{k}\bigg) + 0.25 \delta \nonumber \\
 \intertext{therefore, substituting for the constant values:}
-x &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42 \circ)}}{1880}\bigg) + 0.25(0.65) \nonumber \\
-x &= 0.47861 \label{eqn: xvalue}
+x_1^{eq} &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42 \circ)}}{1880}\bigg) + 0.25(0.65) \nonumber \\
+x_1^{eq} &= 0.47861 \label{eqn: xvalue}
+\end{align}
+
+We can also determine the corresponding equilibrium voltage by substitution of $x_1^{eq}$ into (\ref{eqn: B1deriv}).
+This leads to the following:
+\begin{align}
+(V^e)^2 &= 1300.24005 \nonumber \\
+\leftrightarrow V^e &= \pm 36.0588 V \nonumber \\
+\intertext{We will only consider the Voltage being a positive value, therefore}
+\leftrightarrow V^e &= 36.0588 V \label{eqn: Ve value}
 \end{align}
 
 
@@ -548,12 +560,55 @@ which is the Laplace transform of $f(t)$.
 
 \subsection{Probelm C2}\label{sec:c2}
 
-\subsection{Probelm C3}\label{sec:c3}
+The following function is defined in the Problem Description:
+
+\begin{equation}
+    f(t) = |\cos(\omega t)|, t \geq 0, \omega > 0
+\end{equation}
+
+This is a periodic function with period $T = \pi$. Then, 
+
+\begin{align}
+f_0(t) &= |cos(\omega t)|(1 - H_\pi(t)) \\
+&= \cos(\omega t)(1 - H_\pi(t)) \\
+&= \cos(\omega t) - \cos(\omega t)H_\pi(t)
+\end{align}
+
+The Laplace transform of $f_0$ can be determined by applying Theorem 4.14 (Shifted (delayed) functions) which can be found on page 95 of the textbook.
+
+\begin{align}
+(\lap f_0)(s) &= \lap\{\cos(\omega t)\} - \lap\{\cos(\omega t)H_\pi(t)\} \\
+&= \lap\{\cos(\omega t)\} - \lap\{\cos(\omega t - \pi)H_\pi(t)\}
+\end{align}
+
+Using the following property of Laplace transforms:
+\begin{equation}
+    \lap\left\{e(t - t_0)H_{t_0}(t)\right\} = e^{-t_0 s}\lap{w(t)}
+\end{equation}
+
+therefore
+
+\begin{align}
+     (\lap f_0)(s) &= \frac{s}{s^2 + \omega^2} - e^{-\pi s}\lap\{\cos(\omega t)\} \\
+     &= \frac{s}{s^2 + \omega^2} - e^{-\pi s}\frac{s}{s^2 + \omega^2} \\
+     &= \frac{s - e^{-\pi s}s}{s^2 + \omega^2} \\
+     &= \frac{s(1 - e^{-\pi s})}{s^2 + \omega^2}
+\end{align}
+
+From Theorem 4.24 (Laplace transform of periodic function, v2) found on page 105 of the textbook
+
+\begin{align}
+(\lap|{\cos(\omega t)|})(s) &= \frac{1}{1 - e^{-\pi s}}\frac{s(1 - e^{-\pi s})}{s^2 + \omega^2} \\
+&= \frac{s}{s^2 + \omega^2}
+\end{align}
+
+
+\subsection{Problem C3}\label{sec:c3}
 
 It is given that
 
 \begin{equation}\label{eq:pntwise_lap}
-    \lim_{n \to \infty} \big(\lap\left(f_n\right)\big) = \lap(f)
+    \lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big) = \lap\{f\}
 \end{equation}
 \vspace{1pt}
 
@@ -566,35 +621,159 @@ Let $f_n(t)$ be the sequence of time-domain functions, where
 
 then
 
-\begin{align*}
-     \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
-     \therefore f(t) &= 0
-\end{align*}
+\begin{subequations}
+     \begin{align}
+         \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
+         \therefore f(t) &= 0
+     \end{align}
+\end{subequations}
 \vspace{1pt}
 
 therefore, $f_n(t)$ converges pointwise to $f(t)$ for all $t\geq0$
 
-\begin{align*}
-    F_n(s) &= \lap\left(f_n\right) \\
-    &= \lap\left(\frac{t}{n}\right) \\
-    &= \frac{1}{n} \lap\left(t\right) \\
-    &= \frac{1}{n} \cdot \frac{1}{s^2} \\
-    &= \frac{1}{ns^2}
-\end{align*}
+\begin{subequations}
+     \begin{align}
+         F_n(s) &= \lap\left\{f_n\right\} \\
+         &= \lap\left\{\frac{t}{n}\right\} \\
+         &= \frac{1}{n} \lap\left\{t\right\} \\
+         &= \frac{1}{n} \cdot \frac{1}{s^2} \\
+         &= \frac{1}{ns^2}
+    \end{align}
+\end{subequations}
+\vspace{1pt}
 
 therefore, all $f_n(t)$ have a Laplace transform $F_n(s)$
 
-\begin{equation}
-     F(s) = \lap(f) = \lap(0) = 0
+\begin{equation}\label{eq:F}
+     F(s) = \lap\{f\} = \lap\{0\} = 0
 \end{equation}
+\vspace{1pt}
 
-therefor, f(t) has a Laplace transform F(s) \\
+therefore, f(t) has a Laplace transform F(s) \\
 
 It can also be seen that this follows the rule in equation \ref{eq:pntwise_lap}, since
 
-\begin{equation*}
+\begin{equation}
      \lim_{n \to \infty} \left(\frac{1}{ns^2}\right) = \frac{1}{s^2} \lim_{n \to \infty} \left(\frac{1}{n}\right) \to 0
-\end{equation*}
+\end{equation}
+\vspace{1pt}
+
+A counterexample to equation \ref{eq:pntwise_lap} is
+
+\begin{equation}\label{eq:fn}
+     f_n(t) = e^t\big(H_{n^2 - n}(t) - H_{n^2 + n}(t)\big)
+\end{equation}
+\vspace{1pt}
+
+$f(t)$ can be calculated by applying the limit chain rule
+
+\begin{equation}
+     f(t) = \lim_{n \to \infty} \bigg(e^t\big(H_{n^2 - n}(t) - H_{n^2 + n}(t)\big)\bigg)
+\end{equation}
+\vspace{1pt}
+
+let $u(n) = n^2 - n$, $w(n) = n^2 + n$, and $g(t) = e^t\big(H_u(t) - H_w(t)\big)$
+
+\begin{subequations}
+     \begin{align}
+         \lim_{n \to \infty} (n^2 - n) &\to \infty \\
+         \text{and } \lim_{n \to \infty} (n^2 + n) &\to \infty 
+     \end{align}  
+\end{subequations}
+\vspace{1pt}
+
+therefore
+
+\begin{equation}
+     f(t) = \lim_{n \to \infty} \bigg(e^t\big(H_{\infty}(t) - H_{\infty}(t)\big)\bigg)
+\end{equation}
+\vspace{1pt}
+
+since $H_a(t)$ is defined as
+
+\begin{equation}
+    H_a(t) = 
+     \begin{cases}
+         0 & \text{if } t < a \\
+         1 & \text{if } t > a
+     \end{cases}
+\end{equation}
+\vspace{1pt}
+
+therefore
+
+\begin{equation}
+     H_{\infty}(t) \equiv 0
+\end{equation}
+
+then
+
+\begin{subequations}
+     \begin{align}
+          f(t) &= \lim_{n \to \infty} (e^t \cdot 0) \\
+          \therefore f(t) &= 0 \\
+          \text{and } F(s) &= 0 \label{eq:F}
+     \end{align}
+\end{subequations}
+\vspace{1pt}
+
+Now $F_n(s)$ must be found
+
+\begin{equation}
+     F_n(s) = \lap\left\{e^t H_{n^2 - n}(t) - e^t H_{n^2 + n}(t)\right\}
+\end{equation}
+\vspace{1pt}
+
+Due to the linearity rule of Laplace transfroms this can be written as
+
+\begin{equation}
+     F_n(s) = \lap\left\{e^t H_{n^2 - n}(t)\right\} - \lap\left\{e^t H_{n^2 + n}(t)\right\}
+\end{equation}
+\vspace{1pt}
+
+The transform rule can now be applied. It states that if $\lap\left\{f(t)\right\} = F(s)$, then $\lap\left\{e^{at} f(t)\right\} = F(s - a)$. So $F_n(s)$ becomes
+
+\begin{equation}
+     F_n(s - 1) = \frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}
+\end{equation}
+\vspace{1pt}
+
+therefore
+
+\begin{equation}
+     \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}\right)
+\end{equation}
+\vspace{1pt}
+
+Then, by the linearity rule
+
+\begin{equation}
+     \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1}\right) - \lim_{n \to \infty}\left(\frac{e^{-(n^2 + n)(s-1)}}{s-1}\right)
+\end{equation}
+\vspace{1pt}
+
+Evaluate the first limit with the limit chain rule. Let $u(n) = n^2 - n$ and $G(s - 1) = \frac{e^{-u(s - 1)}}{s - 1}$
+
+\begin{equation}
+     \lim_{n \to \infty} (n^2 - n) \to \infty
+\end{equation}
+\vspace{1pt}
+
+Then it can be seen that
+
+\begin{equation}
+     \lim_{n \to \infty} = \frac{e^{-\infty(s - 1)}}{s - 1} \to \text{Undefined}
+\end{equation}
+\vspace{1pt}
+
+since $\infty(s - 1)$ is undefined. Therefore
+
+\begin{equation}\label{eq:lim_Fn}
+     \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}\right) \to \text{Undefined}
+\end{equation}
+\vspace{1pt}
+
+Equations \ref{eq:F} and \ref{eq:lim_Fn} show that \ref{eq:pntwise_lap} is not true for the example in \ref{eq:fn}. Therefore it can be concluded that for a sequence of time-domain functions $f_n$, equation \ref{eq:pntwise_lap} is only true if $\lim_{n \to \infty} (\lap\{f_n\})$ converges.
 
 \end{document}
 

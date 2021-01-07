@@ -429,13 +429,44 @@ Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and
 
 \subsection{Problem B1}\label{sec:b1}
 Include all info on start of B1 here. The following relates to the second half of B1:
-We also need to determine the equilibrium voltage and current as a function of $x^e$. Using (\ref{1.18c}), we can determine the following:
+We also need to determine the equilibrium voltage and current as a function of $x^e$.
 
+Using (\ref{1.18b}) and applying (\ref{1.18a}), we can establish that
+\begin{align}
+\textcolor{orange}{c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2}} + \textcolor{blue}{mg\sin(\phi) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d)} &= 0 \label{PartBstart}
+\end{align}
+Let us consider first the blue section of (\ref{PartBstart}). For the ball to equilibriate, there must be forces acting upon it in both directions. When the ball is at $x_{min}$, we know that the orange part of the equation will be acting downwards. The combination of the other 2 non-zero components must not become less than 0, otherwise the ball will not be able to settle in an equilibium position.
+We can therefore say the following,
+\begin{align}
+mg \sin (\phi) - k(x_{min} - d) &= 0 \nonumber \\
+\Leftrightarrow k(x_{min} - d) &= mg \sin (\phi) \nonumber \\
+\Leftrightarrow x_{min} - d &= \frac {mg \sin (\phi) }{k } \nonumber \\
+\Leftrightarrow x_{min} &= \frac {mg \sin (\phi) }{k } + d \label{PartB1xmin}
+\end{align}
+
+Let us now consider the orange section of (\ref{PartBstart}). For the ball to equilibriate, the ball cannot go beyond the centre of the inductor, otherwise both the overall forces from the orange and blue section acting on the system would be to the left, and hence the ball could not equilibriate in this area. In order to find the maximum $x$-position of the ball, we can find when this orange section equals 0 and determine the corresponding $x$ value.
+\begin{align}
+c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} &= 0 \label{x1_max}
+\end{align}
+The only mathematically possible way this can occur is if
+\begin{align}
+c(x_3^{eq})^2 = 0 \label{eqn: B1x_3eqn}
+\end{align}
+
+
+Using (\ref{1.18c}), we can determine the following:
 \begin{align}
 V - x_3^{eq}R &= 0 \nonumber \\
 \Leftrightarrow x_3^{eq} &= \frac{V}{R} \label{eqn: x3eq}
 \end{align}
 where $x_3^{eq}$ is the equilibrium current.
+\end{align}
+Application of (\ref{eqn: x3eq})to (\ref{eqn: B1x_3eqn}) leads to the following:
+\begin{align}
+c(\frac{V}{R})^2 = 0 \label{orangeeqn}
+\end{align}
+It is clear that the only variable in (\ref{orangeeqn}) is $V$, therefore, for this equation to equal 0, $V$ must equal 0.
+In order to determine the corresponding $x_{max}$ value when $V = 0$, we can use (\ref{1.18b}) again to determine an equation in $x_1$ and $V$.
 
 From (\ref{1.18b}), which is rewritten below for clarity, we can determine the following:
 
@@ -443,24 +474,32 @@ From (\ref{1.18b}), which is rewritten below for clarity, we can determine the f
 \frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \nonumber \\
 \intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the constant value of $m$, this leads to the following conclusion:}
 c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d) &= 0 \nonumber \\
-\intertext{Substituing for the constants, and given that from (\ref{1.18a})$x_2^eq = 0$}
-\Leftrightarrow 6.815 \frac{({x_3}^{eq})^2}{(0.65 - x_1^{eq})^2} + (0.425)(9.81)\sin(42^\circ) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d) &= 0 \nonumber \\
-\Leftrightarrow 6.815 ({x_3}^{eq})^2 + 2.7898((0.65 - x_1^{eq})^2) - 1880(x_1^{eq}-0.42)((0.65 - x_1^{eq})^2) &= 0 \nonumber \\
-\Leftrightarrow 6.815 (\frac{V}{R})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) \nonumber \\ - 1820.78x_1^{eq} + 333.606 &= 0 \nonumber \\
-\Leftrightarrow 6.815 (\frac{V}{53})^2 + 2.7898((x_1^{eq})^2) - 3.62674x_1^{eq} + 1.17869 - 1880((x_1^{eq})^3) + 3233.6((x_1^{eq})^2) \nonumber \\ - 1820.78x_1^{eq} + 333.606 &= 0 \nonumber \\
-\Leftrightarrow 1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 &= \frac{6.815V^2}{2809} \nonumber \\
-\Leftrightarrow \frac{2809}{6.815}\bigg(1880((x_1^{eq})^3) - 3236.3898((x_1^{eq})^2) + 1824.40641(x_1^{eq} - 334.78469 \bigg) &= V^2 \nonumber \\ 
-\Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01(x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
+c(x_3^{eq})^2 + mg\sin(\phi)(\delta - x_1^{eq})^2 - k(x_1^{eq} - d)(\delta - x_1^{eq})^2 &= 0 \nonumber \\
+\intertext{Substituting \ref{eqn: x3eq}}
+c\frac{V^2}{R^2} + mg\sin(\phi)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) - k(x_1^{eq} - d)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) &= 0 \nonumber \\
+c\frac{V^2}{R^2} + mg\sin(\phi)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) - k(\delta^2 x_1^{eq} - 2\delta (x_1^{eq})^2 + (x_1^{eq})^3 -d\delta^2 + 2d\delta x_1^{eq} - d(x_1^{eq})^2) &= 0 \nonumber \\
+c\frac{V^2}{R^2} + (x_1^{eq})^3(-k) + (x_1^{eq})^2(mg\sin(\phi) + 2k\delta +dk) + x_1^{eq}(-2\delta mg\sin(\phi) - k\delta^2 -2dk\delta) + (\delta^2mg\sin(\phi) + kd\delta^2) &= 0 \nonumber \\
+\bigg(\frac{R^2}{c}\bigg((x_1^{eq})^3(k) + (x_1^{eq})^2(-mg\sin(\phi) - 2k\delta -dk) + x_1^{eq}(2\delta mg\sin(\phi) + k\delta^2 +2dk\delta) \nonumber \\  + (-\delta^2mg\sin(\phi) - kd\delta^2)\bigg)\bigg)^\frac{1}{2} &= V \nonumber \\ 
+\intertext{Substituing for the constants,}
+\Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
 \end{align}
+
 A plot of this equation is shown below.
 \begin{figure}[h]
 \centering
 \includegraphics[width=10cm]{figures/ProblemB1}
-\caption{A plot to determine the maximum equilibrium voltage, and the corresponding $x$-position.}
+\caption{A plot to determine the maximum equilibrium voltage, and the corresponding $x$-position....}
 \label{fig:B1plot}
 \end{figure}
 
-From the plot, we can see that the maximum equilibrium voltage value is $37.0111$ V. The corresponding $x$-position where this maximum voltage occurs is $0.4976$ m.
+From the plot, we can see that the value of $x_{max}$ we were trying to determine when $V = 0$ is found at 0.65m. This is equal to $\delta$, therefore satisfying Problem B1. It can also be shown that the second point at which this plot meets the x-axis is at $x_1 = 0.42148$m. This is the same value obtained following substitution of the constants into (\ref{PartB1xmin}), thereby verifying our derivation of this point as well.
+Overall, we can agree with Problem B1 and state that
+\begin{align}
+x_{min} < x^e < x_{max},
+\end{align}
+where $x_{min} = d + \frac{mg\sin(\phi)}{k}$ and $x_{max} = \delta$.
+
+From the plot, we can also see that the maximum equilibrium voltage value is $37.0111$ V. The corresponding $x$-position where this maximum voltage occurs is $0.4976$ m.
 
 
 We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
@@ -478,9 +517,9 @@ We can also determine the corresponding equilibrium voltage by substitution of $
 This leads to the following:
 \begin{align}
 (V^e)^2 &= 1300.24005 \nonumber \\
-\leftrightarrow V^e &= \pm 36.0588 V \nonumber \\
+\Leftrightarrow V^e &= \pm 36.0588 V \nonumber \\
 \intertext{We will only consider the Voltage being a positive value, therefore}
-\leftrightarrow V^e &= 36.0588 V \label{eqn: Ve value}
+\Leftrightarrow V^e &= 36.0588 V \label{eqn: Ve value}
 \end{align}
 
 

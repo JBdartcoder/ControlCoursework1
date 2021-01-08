@@ -116,12 +116,12 @@ class WoodenBall:
                  r_value=0.125,  # r
                  R_value=53,  # R
                  normal_inductance_value=0.120,  # L_0
-                 inductance_constant_value=0.25,  # L_1
+                 inductance_constant_value=0.025,  # L_1
                  alpha_value=1.2,  # alpha
                  c_value=6.815,  # c/1000 so it is in terms of kg
                  k_value=1880,  # k
                  b_value=10.4,  # b
-                 phi_value=42,  # phi angle
+                 phi_value=0.73303,  # phi angle
                  # v=36.04,                 # V
                  x_1_value=0,
                  x_2_value=0,
@@ -157,8 +157,9 @@ class WoodenBall:
         # STEP 1: Define the system dynamics
         def system_dynamics(_t, z):
             x_1 = z[0]
-            x_3 = z[1]
-            V_value = z[2]
+            x_2 = z[1]
+            x_3 = z[2]
+            V_value = voltage
 
             # print(x_1)
             # print(x_3)
@@ -200,7 +201,7 @@ class WoodenBall:
                     (B_1_sub * V_bar) - (B_2_sub * x_1_bar) - (B_3_sub * x_3_bar)]
 
         # STEP 2: Define the initial conditions, z(0)
-        z_initial = [self.x_1,
+        z_initial = [0.47861,
                      self.x_2,
                      self.x_3]
 

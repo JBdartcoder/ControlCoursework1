@@ -128,7 +128,7 @@ class WoodenBall:
                  x_3_value=0,
                  x_1_e_value=0.47861,  # x_1
                  x_2_e_value=0,  # x_2
-                 x_3_e_value=0,  # x_3
+                 x_3_e_value=0.68,  # x_3
                  V_e_value=36.04
                  ):
         self.__mass = m_value

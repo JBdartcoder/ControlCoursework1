@@ -19,8 +19,7 @@ class WoodenBall:
                  k=1880,         # k
                  b=10.4,             # b
                  phi=0.73303,                        # phi angle
-                 # v=36.04,                 # V
-                 x_1_position=0.47861,        # x_1
+                 x_1=0.46,        # x_1
                  x_2=0,                 # x_2
                  x_3=0                  # x_3
                  ):
@@ -38,8 +37,7 @@ class WoodenBall:
         self.__spring_stiffness = k
         self.__damper_coeff = b
         self.__phi = phi
-        # self.__voltage = v
-        self.x_1 = x_1_position
+        self.x_1 = x_1
         self.x_2 = x_2
         self.x_3 = x_3
 
@@ -47,14 +45,15 @@ class WoodenBall:
 
         # STEP 1: Define the system dynamics
         def system_dynamics(_t, z):
-            x_2 = z[1]
-            x_3 = z[2]
-            return [x_2,
-                    (5 / 7 * self.__mass) * ((self.__electromagnet_constant * (x_3 ** 2) / (self.__magnet_position - self.x_1) ** 2)
-                                             + (self.__mass * self.__gravity * np.sin(self.__phi)) - (self.__damper_coeff * x_2) -
-                                             (self.__spring_stiffness*(self.x_1 - self.__natural_length))),
-                    (voltage - (x_3 * self.__resistance)) /
-                    (self.__nominal_inductance + (self.__inductance_constant * np.exp(-self.__inductance_exp_constant*(self.__magnet_position - self.x_1))))
+            x_1a = z[0]
+            x_2a = z[1]
+            x_3a = z[2]
+            return [x_2a,
+                    (5 / 7 * self.__mass) * ((self.__electromagnet_constant * (x_3a ** 2) / (self.__magnet_position - x_1a) ** 2)
+                                             + (self.__mass * self.__gravity * np.sin(self.__phi)) - (self.__damper_coeff * x_2a) -
+                                             (self.__spring_stiffness*(x_1a - self.__natural_length))),
+                    (voltage - (x_3a * self.__resistance)) /
+                    (self.__nominal_inductance + (self.__inductance_constant * np.exp(-self.__inductance_exp_constant*(self.__magnet_position - x_1a))))
                     ]
 
         # STEP 2: Define the initial conditions, z(0)
@@ -79,26 +78,23 @@ class WoodenBall:
         plt.plot(solution.t, solution.y[0].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('x_1 (m)')
+        plt.ylabel('$x_1$ (m)')
         plt.show()
 
         # plot y vs time
         plt.plot(solution.t, solution.y[1].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('x_2')
+        plt.ylabel('$x_2$ (m/s)')
         plt.show()
 
         # plot theta vs time
         plt.plot(solution.t, solution.y[2].T)
         plt.grid()
         plt.xlabel('Time (s)')
-        plt.ylabel('x_3')
+        plt.ylabel('$x_3$ (A)')
         plt.show()
 
 
-# Declare car with steering angle -2 deg for time 2s
-# Negative angle as it is clockwise
-# Frame of reference determines anticlockwise as +ve
 ronald = WoodenBall()
-ronald.move(36.04, 2)   # 2 deg converted to rads
+ronald.move(36.04, 2)

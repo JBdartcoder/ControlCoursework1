@@ -93,7 +93,7 @@ G_1 = C.TransferFunction(num_Gx, den_Gx)
 G_2 = C.TransferFunction([1], [tau, 1])
 
 # Combining the two transfer function in parallel
-G_x = C.parallel(G_1, G_2)
+# G_x = C.parallel(G_1, G_2)
 # G_x = G_1 / (1 + (G_1 * G_2))
 
 
@@ -106,16 +106,16 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 90
+Kp = 10
 Ki = 0.1
-Kd = 0.09
-controller = -pid(Kp, Ki, Kd)
+Kd = 5
+controller = pid(Kp, Ki, Kd)
 
 t_final = 1
 num_points = 500
 t_span = np.linspace(0, t_final, num_points)
 
-
+G_x = C.feedback(G_1, G_2)
 G_d = C.feedback(G_x, controller)
 
 t_imp, x_imp = C.impulse_response(G_d, t_span)

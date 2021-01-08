@@ -74,6 +74,7 @@ class WoodenBall:
 
         # STEP 4: Plot solutions - plots open one after the other
 
+        """
         # plot x vs time
         plt.plot(solution.t, solution.y[0].T)
         plt.grid()
@@ -93,6 +94,27 @@ class WoodenBall:
         plt.grid()
         plt.xlabel('Time (s)')
         plt.ylabel('$x_3$ (A)')
+        plt.show()
+        """
+
+        # Subplot is used to plot the 3 graphs in one figure
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+
+        ax1.plot(solution.t, solution.y[0])
+        ax1.grid()
+        ax1.set_xlabel('Time (s)')
+        ax1.set_ylabel('$x_1$ (m)')
+
+        ax2.plot(solution.t, solution.y[1])
+        ax2.grid()
+        ax2.set_xlabel('Time (s)')
+        ax2.set_ylabel('$x_2$ (m/s)')
+
+        ax3.plot(solution.t, solution.y[2])
+        ax3.grid()
+        ax3.set_xlabel('Time (s)')
+        ax3.set_ylabel('$x_3$ (A)')
+
         plt.show()
 
 

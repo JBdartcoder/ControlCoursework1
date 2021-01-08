@@ -31,7 +31,7 @@ c_value = 6.815
 k_value = 1880
 b_value = 10.4
 phi_value = 42
-V_e_value = 36.04
+V_e_value = 36.0588
 
 # State equilibrium values as determined in derivations
 x1_eq_value = 0.47861
@@ -46,10 +46,10 @@ A_2_value = float(A_2.subs([(b, b_value), (m, m_value)]))
 A_3_value = float(A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
 B_1_value = float(B_1.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
-B_2_value = float(B_1.subs(
+B_2_value = float(B_2.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
      (x3_eq, x3_eq_value), (V_e, V_e_value)]))
-B_3_value = float(B_1.subs(
+B_3_value = float(B_3.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
      (R, R_value)]))
 
@@ -76,18 +76,17 @@ w, mag, phase = signal.bode(sys)
 # Bode magnitude plot
 fig, (p1, p2) = plt.subplots(2, 1)
 fig.subplots_adjust(hspace=0.75)
-p1.plot(w, mag)
+p1.plot(w, mag, '-r')
 p1.set_xscale("log")
 p1.set_title("Magnitude")
-p1.set_xlabel("Frequency")
-p1.set_ylabel("dB")
+p1.set_xlabel("Frequency (Hz)")
+p1.set_ylabel("Magnitude (dB)")
 p1.grid(axis="x", which="both", alpha=0.4)
 
 # Bode phase plot
-p2.plot(w, phase)
+p2.plot(w, phase, '-g')
 p2.set_xscale("log")
 p2.set_title("Phase")
-p2.set_xlabel("Frequency")
-p2.set_ylabel("Degrees")
+p2.set_xlabel("Phase (degrees)")
 p2.grid(axis="x", which="both", alpha=0.4)
 plt.show()

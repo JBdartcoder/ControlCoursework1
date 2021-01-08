@@ -106,23 +106,34 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
-Kp = 10
+Kp = 70
 Ki = 0.1
-Kd = 5
-controller = pid(Kp, Ki, Kd)
+Kd1 = 3
+Kd2 = 4
+Kd3 = 5
+controller1 = pid(Kp, Ki, Kd1)
+controller2 = pid(Kp, Ki, Kd2)
+controller3 = pid(Kp, Ki, Kd3)
 
 t_final = 1
 num_points = 500
 t_span = np.linspace(0, t_final, num_points)
 
 G_x = C.feedback(G_1, G_2)
-G_d = C.feedback(G_x, controller)
+G_d1 = C.feedback(G_x, controller1)
+G_d2 = C.feedback(G_x, controller2)
+G_d3 = C.feedback(G_x, controller3)
 
-t_imp, x_imp = C.impulse_response(G_d, t_span)
+t_imp, x_imp1 = C.impulse_response(G_d1, t_span)
+_, x_imp2 = C.impulse_response(G_d2, t_span)
+_, x_imp3 = C.impulse_response(G_d3, t_span)
 
 
-plt.plot(t_imp, x_imp)
+plt.plot(t_imp, x_imp1, label='Kd = 3')
+plt.plot(t_imp, x_imp2, label='Kd = 4')
+plt.plot(t_imp, x_imp3, label='Kd = 5')
 plt.xlabel('Time (s)')
 plt.ylabel('')
+plt.legend()
 plt.grid()
 plt.show()

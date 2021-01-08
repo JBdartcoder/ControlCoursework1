@@ -78,8 +78,6 @@ print('d_phi_x2:')
 sym.pprint(d_phi_x2_eq)
 print('d_phi_x3:')
 sym.pprint(d_phi_x3_eq)
-
-
 # Print partial derivatives of psi
 print('d_psi_V:')
 sym.pprint(d_psi_V)
@@ -123,7 +121,7 @@ class WoodenBall:
                  b_value=10.4,  # b
                  phi_value=0.73303,  # phi angle
                  # v=36.04,                 # V
-                 x_1_value=0,
+                 x_1_value=0.46,
                  x_2_value=0,
                  x_3_value=0,
                  x_1_e_value=0.47861,  # x_1
@@ -156,9 +154,9 @@ class WoodenBall:
 
         # STEP 1: Define the system dynamics
         def system_dynamics(_t, z):
-            x_1 = z[0]
-            x_2 = z[1]
-            x_3 = z[2]
+            x_1a = z[0]
+            x_2a = z[1]
+            x_3a = z[2]
             V_value = voltage
 
             # print(x_1)
@@ -166,42 +164,28 @@ class WoodenBall:
 
             # Subbing the values into the constants: A_1, A_2 ... etc
             A_1_sub = A_1.subs([(m, self.__mass), (c, self.__electromagnet_constant), (delta, self.__magnet_position),
-                                (k, self.__spring_stiffness), (x3, x_3), (x1, x_1)])
+                                (k, self.__spring_stiffness), (x3, x_3a), (x1, x_1a)])
             A_2_sub = A_2.subs([(b, self.__damper_coeff), (m, self.__mass)])
             A_3_sub = A_3.subs([(c, self.__electromagnet_constant), (m, self.__mass), (delta, self.__magnet_position),
-                                (x3, x_3), (x1, x_1)])
+                                (x3, x_3a), (x1, x_1a)])
             B_1_sub = B_1.subs([(L0, self.__normal_inductance), (L1, self.__inductance_constant),
-                                (alpha, self.__inductance_exp_constant), (delta, self.__magnet_position), (x1, x_1)])
+                                (alpha, self.__inductance_exp_constant), (delta, self.__magnet_position), (x1, x_1a)])
             B_2_sub = B_2.subs([(L1, self.__inductance_constant), (alpha, self.__inductance_exp_constant),
                                 (R, self.__resistance), (delta, self.__magnet_position),
-                                (L0, self.__normal_inductance), (x3, x_3), (x1, x_1), (V, V_value)])
+                                (L0, self.__normal_inductance), (x3, x_3a), (x1, x_1a), (V, V_value)])
             B_3_sub = B_3.subs([(R, self.__resistance), (L0, self.__normal_inductance),
                                 (L1, self.__inductance_constant), (alpha, self.__inductance_exp_constant),
-                                (delta, self.__magnet_position), (x1, x_1)])
+                                (delta, self.__magnet_position), (x1, x_1a)])
 
-            """
-            print(A_1_sub)
-            print(A_2_sub)
-            print(A_3_sub)
-            print(B_1_sub)
-            print(B_2_sub)
-            print(B_3_sub)
-
-
-            x_1_bar_dot = x_2_bar
-            x_2_bar_dot = (A_1 * x_1_bar) - (A_2 * x_2_bar) + (A_3 * x_3_bar)
-            x_3_bar_dot = (B_1 * V_bar) - (B_2 * x_1_bar) - (B_3 * x_3_bar)
-            """
-
-            x_1_bar = self.x_1 - self.x_1_e
-            x_2_bar = self.x_2 - self.x_2_e
-            x_3_bar = self.x_3 - self.x_3_e
+            x_1_bar = x_1a - self.x_1_e
+            x_2_bar = x_2a - self.x_2_e
+            x_3_bar = x_3a - self.x_3_e
             V_bar = voltage - self.V_e
-            return [x_2_bar, (A_1_sub * x_1_bar) - (A_2_sub * x_2_bar) + (A_3_sub * x_3_bar),
-                    (B_1_sub * V_bar) - (B_2_sub * x_1_bar) - (B_3_sub * x_3_bar)]
+            return [x_2_bar, (A_1_sub * x_1_bar) + (A_2_sub * x_2_bar) + (A_3_sub * x_3_bar),
+                    (B_1_sub * V_bar) + (B_2_sub * x_1_bar) + (B_3_sub * x_3_bar)]
 
         # STEP 2: Define the initial conditions, z(0)
-        z_initial = [0.47861,
+        z_initial = [self.x_1,
                      self.x_2,
                      self.x_3]
 
@@ -241,5 +225,5 @@ class WoodenBall:
 
 
 # Frame of reference determines anticlockwise as +ve
-ronald = WoodenBall()
-ronald.move(36.04, 2)
+woody = WoodenBall()
+woody.move(36.04, 2)

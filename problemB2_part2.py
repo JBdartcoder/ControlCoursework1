@@ -128,12 +128,12 @@ class WoodenBall:
                  x_3_value=0,
                  x_1_e_value=0.47861,  # x_1
                  x_2_e_value=0,  # x_2
-                 x_3_e_value=0,  # x_3
+                 x_3_e_value=0.68,  # x_3
                  V_e_value=36.04
                  ):
         self.__mass = m_value
         self.__gravity = g_value
-        self.__natural_lenth = d_value
+        self.__natural_length = d_value
         self.__magnet_position = delta_value
         self.__radius = r_value
         self.__resistance = R_value
@@ -240,8 +240,6 @@ class WoodenBall:
         plt.show()
 
 
-# Declare car with steering angle -2 deg for time 2s
-# Negative angle as it is clockwise
 # Frame of reference determines anticlockwise as +ve
 ronald = WoodenBall()
-ronald.move(36.04, 2)  # 2 deg converted to rads
+ronald.move(36.04, 2)

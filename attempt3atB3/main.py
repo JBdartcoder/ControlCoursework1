@@ -1,6 +1,6 @@
 import sympy as sym
 import matplotlib.pyplot as plt
-from scipy import signal
+from scipy import signal as sig
 
 # Define all involved symbolic variables
 # constants
@@ -52,41 +52,36 @@ B_2_value = float(B_2.subs(
 B_3_value = float(B_3.subs(
     [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
      (R, R_value)]))
+print(B_3_value)
 
 # Use A_1 -> B_3 to determine the coefficients of the numerator
 # and the denominator (from s^3 - s^0 term)
 num_value = A_3_value * B_1_value
-s_3_den_value = 1       # coeff. of s^3
+s_3_den_value = 1.       # coeff. of s^3
 s_2_den_value = -B_3_value - A_2_value      # coeff. of s^2
 s_1_den_value = (B_3_value * A_2_value) - A_1_value     # coeff. of s^1
 s_0_den_value = (B_3_value*A_1_value) - (A_3_value*B_2_value)       # coeff. of s^0
-
-# Declare overall numerator and denominator of transfer function
 num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
-print(num_Gx)
-print(den_Gx)
 
-# Declare overall transfer function system
-sys = signal.TransferFunction(num_Gx, den_Gx)
+# Declare overall transfer function
+G_x_tf = sig.TransferFunction(num_Gx, den_Gx)
 
-# Set up and plot the bode plot
-w, mag, phase = signal.bode(sys)
-
-# Bode magnitude plot
-fig, (p1, p2) = plt.subplots(2, 1)
-fig.subplots_adjust(hspace=0.75)
-p1.plot(w, mag, '-r')
-p1.set_xscale("log")
-p1.set_title("Magnitude")
-p1.set_xlabel("Frequency (Hz)")
-p1.set_ylabel("Magnitude (dB)")
-p1.grid(axis="x", which="both", alpha=0.4)
-
-# Bode phase plot
-p2.plot(w, phase, '-g')
-p2.set_xscale("log")
-p2.set_title("Phase")
-p2.set_xlabel("Phase (degrees)")
-p2.grid(axis="x", which="both", alpha=0.4)
+# # Use scipy signal library to plot impulse response
+t, y = sig.impulse(G_x_tf)
+plt.figure(2)
+plt.plot(t, y, 'r-')
+plt.title('Impulse response of transfer function')
+plt.xlabel('time (s)')
+plt.ylabel('$x_{1}$ (m)')
 plt.show()
+
+# Use scipy signal library to plot step response
+t, y = sig.step(G_x_tf)
+plt.figure(1)
+plt.plot(t, y, 'r-')
+plt.title('Step response of transfer function')
+plt.xlabel('time (s)')
+plt.ylabel('$x_{1}$ (m)')
+plt.show()
+

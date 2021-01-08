@@ -116,7 +116,7 @@ num_points = 500
 t_span = np.linspace(0, t_final, num_points)
 
 
-G_d = C.feedback(G_1, controller)
+G_d = C.feedback(G_x, controller)
 
 t_imp, x_imp = C.impulse_response(G_d, t_span)
 

@@ -13,21 +13,21 @@ class WoodenBall:
                  r=0.125,                  # r
                  R=53,                 # R
                  nominal_inductance=0.120,      # L_0
-                 inductance_constant=0.25,      # L_1
+                 inductance_constant=0.025,      # L_1
                  alpha=1.2,   # alpha
                  c=6.815,  # c/1000 so it is in terms of kg
                  k=1880,         # k
                  b=10.4,             # b
-                 phi=42,                        # phi angle
+                 phi=0.73303,                        # phi angle
                  # v=36.04,                 # V
-                 x_1_position=0.45,        # x_1
+                 x_1_position=0.47861,        # x_1
                  x_2=0,                 # x_2
                  x_3=0                  # x_3
                  ):
 
         self.__mass = m
         self.__gravity = g
-        self.__natural_lenth = d
+        self.__natural_length = d
         self.__magnet_position = delta
         self.__radius = r
         self.__resistance = R
@@ -52,7 +52,7 @@ class WoodenBall:
             return [x_2,
                     (5 / 7 * self.__mass) * ((self.__electromagnet_constant * (x_3 ** 2) / (self.__magnet_position - self.x_1) ** 2)
                                              + (self.__mass * self.__gravity * np.sin(self.__phi)) - (self.__damper_coeff * x_2) -
-                                             (self.__spring_stiffness*(self.x_1 - self.__natural_lenth))),
+                                             (self.__spring_stiffness*(self.x_1 - self.__natural_length))),
                     (voltage - (x_3 * self.__resistance)) /
                     (self.__nominal_inductance + (self.__inductance_constant * np.exp(-self.__inductance_exp_constant*(self.__magnet_position - self.x_1))))
                     ]

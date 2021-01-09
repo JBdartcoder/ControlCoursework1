@@ -200,7 +200,7 @@ L = L_0 + L_1\exp(-\alpha y) \label{1.9}
 \subsection{Problem A2}\label{sec:a2}
 We can now write the system in state space representation, using the two equations obtained in \ref{sec:a1}.
 
-We can firstly define four new variables as follows:
+We can firstly define three new variables as follows:
 
 \begin{align}
 x_1 &= x \label{1.12} \\
@@ -241,7 +241,7 @@ x_2 \\
 
 
 \subsection{Problem A3}\label{sec:a3}
-The equlibrium points of the system are characterised in \ref{eq:eq_points}.
+The equlibrium points of the system are characterised in \eqref{eq:eq_points}.
 
 \begin{subequations}\label{eq:eq_points}
 \begin{align}
@@ -526,18 +526,64 @@ This leads to the following:
 
 \subsection{Problem B2}\label{sec:b2}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/B2plots}
+\caption{These plots show the simulation of the nonlinear dynamical system which was determined in Problem A2.}
+\label{fig:B2plots}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/B2part2plots}
+\caption{These plots show the simulation of the linearised dynamical system which was determined in Problem A4.}
+\label{fig:B2part2plots}
+\end{figure}
 
 \subsection{Problem B3}\label{sec:b3}
-
+The transfer function was simulated under the action of an impulse and step response using Python. The equations for the 2 responses are as follows.
+Impulse response:
+\begin{equation}
+\left(\left(0.3245 \sin{\left(31.294 t \right)} - 0.0655 \cos{\left(31.294 t \right)}\right) e^{163.82 t} + 0.0655 e^{8.74 t}\right) e^{- 172.5595 t}\left\right
+\end{equation}
+Step response:
+\begin{equation}
+\left(- \left(0.00463 \sin{\left(31.294 t \right)} + 0.00908 \cos{\left(31.294 t \right)}\right) e^{163.82 t} - 0.0004 e^{8.739 t} + 0.00948 e^{172.559 t}\right) e^{- 172.559 t}\left\right
+\end{equation}
+Both responses were plotted using the scipy signal package, and matplotlib. The plots are shown below.
+\begin{figure}[h]
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/Impulse}
+    \caption{Plot of the impulse response of the transfer function}
+    \endminipage \hfill
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\textwidth]{figures/Step}
+    \caption{Plot of the step response of the transfer function}
+    \endminipage
+\end{figure}
 
 \subsection{Problem B4}\label{sec:b4}
-
-
-
+The scipy signal package was used to produce a bode plot of the transfer function.
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/B4bode1}
+\caption{Plots of the magnitude and phase lag of the transfer function}
+\label{fig:B4bode}
+\end{figure}
+From the magnitude plot of (\ref{fig:B4bode}), there is a Low frequency assymtote of the magnitude at $-40$dB. The high frequencty assymtote of the magnitude has a slope of -55dB (which is almost -60dB) per logarithmic unit of frequency. The low frequency assymtote of the phase plot is at $0^\circ$ and the high frequency assymtote of the phases is between $-260^{\circ}$ and $-270^{\circ}$.
 
 \subsection{Problem B5}\label{sec:b5}
 
-When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
+When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias due to disturbances. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
+
+\subsection{Problem B6} Figure \ref{fig:B6_plot} shows the $x(t)$ trajectory of the control system. The graph clearly shows that the controller exhibits the desired characteristics outlined in Section \ref{sec:b5}. It shows that $x_1$ returns quickly to the set point without oscillation, and there is no constant offset due to disturbances.
+
+\begin{figure}[h]
+     \includegraphics[width=0.5\textwidth]{figures/B6_plot.eps}
+     \caption{A controller for the system with varying values of $k_d$. $K_p = 70$, $K_i = 0.1$}
+     \label{fig:B6_plot}
+\end{figure}
+
 
 \section{Part C}
 
@@ -644,60 +690,60 @@ From Theorem 4.24 (Laplace transform of periodic function, v2) found on page 105
 
 \subsection{Problem C3}\label{sec:c3}
 
-It is given that
+% It is given that
 
-\begin{equation}\label{eq:pntwise_lap}
-    \lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big) = \lap\{f\}
-\end{equation}
-\vspace{1pt}
+% \begin{equation}\label{eq:pntwise_lap}
+%     \lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big) = \lap\{f\}
+% \end{equation}
+% \vspace{1pt}
 
-Let $f_n(t)$ be the sequence of time-domain functions, where
+% Let $f_n(t)$ be the sequence of time-domain functions, where
 
-\begin{equation}
-     f_n(t) = \frac{t}{n}
-\end{equation}
-\vspace{1pt}
+% \begin{equation}
+%      f_n(t) = \frac{t}{n}
+% \end{equation}
+% \vspace{1pt}
 
-then
+% then
 
-\begin{subequations}
-     \begin{align}
-         \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
-         \therefore f(t) &= 0
-     \end{align}
-\end{subequations}
-\vspace{1pt}
+% \begin{subequations}
+%      \begin{align}
+%          \lim_{n \to \infty} \left(\frac{t}{n}\right) &\to 0 \\
+%          \therefore f(t) &= 0
+%      \end{align}
+% \end{subequations}
+% \vspace{1pt}
 
-therefore, $f_n(t)$ converges pointwise to $f(t)$ for all $t\geq0$
+% therefore, $f_n(t)$ converges pointwise to $f(t)$ for all $t\geq0$
 
-\begin{subequations}
-     \begin{align}
-         F_n(s) &= \lap\left\{f_n\right\} \\
-         &= \lap\left\{\frac{t}{n}\right\} \\
-         &= \frac{1}{n} \lap\left\{t\right\} \\
-         &= \frac{1}{n} \cdot \frac{1}{s^2} \\
-         &= \frac{1}{ns^2}
-    \end{align}
-\end{subequations}
-\vspace{1pt}
+% \begin{subequations}
+%      \begin{align}
+%          F_n(s) &= \lap\left\{f_n\right\} \\
+%          &= \lap\left\{\frac{t}{n}\right\} \\
+%          &= \frac{1}{n} \lap\left\{t\right\} \\
+%          &= \frac{1}{n} \cdot \frac{1}{s^2} \\
+%          &= \frac{1}{ns^2}
+%     \end{align}
+% \end{subequations}
+% \vspace{1pt}
 
-therefore, all $f_n(t)$ have a Laplace transform $F_n(s)$
+% therefore, all $f_n(t)$ have a Laplace transform $F_n(s)$
 
-\begin{equation}\label{eq:F}
-     F(s) = \lap\{f\} = \lap\{0\} = 0
-\end{equation}
-\vspace{1pt}
+% \begin{equation}\label{eq:F}
+%      F(s) = \lap\{f\} = \lap\{0\} = 0
+% \end{equation}
+% \vspace{1pt}
 
-therefore, f(t) has a Laplace transform F(s) \\
+% therefore, f(t) has a Laplace transform F(s) \\
 
-It can also be seen that this follows the rule in equation \ref{eq:pntwise_lap}, since
+% It can also be seen that this follows the rule in equation \ref{eq:pntwise_lap}, since
 
-\begin{equation}
-     \lim_{n \to \infty} \left(\frac{1}{ns^2}\right) = \frac{1}{s^2} \lim_{n \to \infty} \left(\frac{1}{n}\right) \to 0
-\end{equation}
-\vspace{1pt}
+% \begin{equation}
+%      \lim_{n \to \infty} \left(\frac{1}{ns^2}\right) = \frac{1}{s^2} \lim_{n \to \infty} \left(\frac{1}{n}\right) \to 0
+% \end{equation}
+% \vspace{1pt}
 
-A counterexample to equation \ref{eq:pntwise_lap} is
+Let \eqref{eq:fn}, below, be a counterexample to the rule outlined in the problem description.
 
 \begin{equation}\label{eq:fn}
      f_n(t) = e^t\big(H_{n^2 - n}(t) - H_{n^2 + n}(t)\big)
@@ -711,19 +757,9 @@ $f(t)$ can be calculated by applying the limit chain rule
 \end{equation}
 \vspace{1pt}
 
-let $u(n) = n^2 - n$, $w(n) = n^2 + n$, and $g(t) = e^t\big(H_u(t) - H_w(t)\big)$
+let $u(n) = n^2 - n$, $w(n) = n^2 + n$, and $g(t) = e^t\big(H_u(t) - H_w(t)\big)$. It can be seen that both $\lim_{n \to \infty} (n^2 - n)$ and $\lim_{n \to \infty} (n^2 + n)$ tend to  $\infty$ as $n \to \infty$. Therefore
 
-\begin{subequations}
-     \begin{align}
-         \lim_{n \to \infty} (n^2 - n) &\to \infty \\
-         \text{and } \lim_{n \to \infty} (n^2 + n) &\to \infty 
-     \end{align}  
-\end{subequations}
-\vspace{1pt}
-
-therefore
-
-\begin{equation}
+\begin{equation}\label{eq:f_chainRule}
      f(t) = \lim_{n \to \infty} \bigg(e^t\big(H_{\infty}(t) - H_{\infty}(t)\big)\bigg)
 \end{equation}
 \vspace{1pt}
@@ -739,21 +775,11 @@ since $H_a(t)$ is defined as
 \end{equation}
 \vspace{1pt}
 
-therefore
+therefore $H_{\infty}(t) \equiv 0$, so \eqref{eq:f_chainRule} becomes $f(t) = \lim_{n \to \infty} (e^t \cdot 0)$. This means that
 
 \begin{equation}
-     H_{\infty}(t) \equiv 0
+     f(t) = 0 \text{ and } F(s) = 0 \label{eq:F}
 \end{equation}
-
-then
-
-\begin{subequations}
-     \begin{align}
-          f(t) &= \lim_{n \to \infty} (e^t \cdot 0) \\
-          \therefore f(t) &= 0 \\
-          \text{and } F(s) &= 0 \label{eq:F}
-     \end{align}
-\end{subequations}
 \vspace{1pt}
 
 Now $F_n(s)$ must be found
@@ -763,7 +789,7 @@ Now $F_n(s)$ must be found
 \end{equation}
 \vspace{1pt}
 
-Due to the linearity rule of Laplace transfroms this can be written as
+Due to the linearity rule of Laplace transforms this can be written as
 
 \begin{equation}
      F_n(s) = \lap\left\{e^t H_{n^2 - n}(t)\right\} - \lap\left\{e^t H_{n^2 + n}(t)\right\}
@@ -812,7 +838,7 @@ since $\infty(s - 1)$ is undefined. Therefore
 \end{equation}
 \vspace{1pt}
 
-Equations \ref{eq:F} and \ref{eq:lim_Fn} show that \ref{eq:pntwise_lap} is not true for the example in \ref{eq:fn}. Therefore it can be concluded that for a sequence of time-domain functions $f_n$, equation \ref{eq:pntwise_lap} is only true if $\lim_{n \to \infty} (\lap\{f_n\})$ converges.
+Equations \eqref{eq:F} and \eqref{eq:lim_Fn} show that $\lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big) \neq \lap\{f\}$ for the example in \eqref{eq:fn}. Therefore it can be concluded that for a sequence of time-domain functions $f_n$, $\lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big)$ and $\lap\{f\}$ are only equal if $\lim_{n \to \infty} (\lap\{f_n\})$ converges.
 
 \end{document}
 

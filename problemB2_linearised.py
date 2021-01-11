@@ -178,5 +178,6 @@ class WoodenBall:
         plt.show()
 
 
+# Declare an instance of WoodenBall, and call the move() function
 woody = WoodenBall()
 woody.move(36.04, 2)

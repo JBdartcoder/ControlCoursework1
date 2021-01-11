@@ -2,9 +2,13 @@ from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
 
+# This python file generates 3 graphs which shows the simulation of the
+# nonlinear dynamical system
+
 
 class WoodenBall:
 
+    # Declaring the values of all the constants
     def __init__(self,
                  m=0.425,                    # m
                  g=9.81,                  # g
@@ -68,35 +72,11 @@ class WoodenBall:
                              z_initial,
                              t_eval=np.linspace(0, dt, __num_points))
 
-        self.x_1 = solution.y[0][-1]   # [-1] represents last element in the array
+        self.x_1 = solution.y[0][-1]
         self.x_2 = solution.y[1][-1]
         self.x_3 = solution.y[2][-1]
 
-        # STEP 4: Plot solutions - plots open one after the other
-
-        """
-        # plot x vs time
-        plt.plot(solution.t, solution.y[0].T)
-        plt.grid()
-        plt.xlabel('Time (s)')
-        plt.ylabel('$x_1$ (m)')
-        plt.show()
-
-        # plot y vs time
-        plt.plot(solution.t, solution.y[1].T)
-        plt.grid()
-        plt.xlabel('Time (s)')
-        plt.ylabel('$x_2$ (m/s)')
-        plt.show()
-
-        # plot theta vs time
-        plt.plot(solution.t, solution.y[2].T)
-        plt.grid()
-        plt.xlabel('Time (s)')
-        plt.ylabel('$x_3$ (A)')
-        plt.show()
-        """
-
+        # STEP 4: Plot solutions
         # Subplot is used to plot the 3 graphs in one figure
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
 

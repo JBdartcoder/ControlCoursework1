@@ -55,8 +55,8 @@
 \synctex=1
 
 \hypersetup{
-    unicode=false, pdftoolbar=true,
-    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
     pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
     pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
     pdfproducer={ELE2024}, pdfnewwindow=true,
@@ -85,7 +85,7 @@
 \address[J. Boden, J. Tutty and S. Paine]{Email addresses: \href{mailto:jboden03@qub.ac.uk}{jboden03@qub.ac.uk},
 \href{mailto:jtutty01@qub.ac.uk}{jtutty01@qub.ac.uk} and
 \href{mailto:spaine01@qub.ac.uk}{spaine01@qub.ac.uk}.}
-\thanks{Link to Git Hub code:....
+\thanks{Link to Git Hub code: \url{https://github.com/JBdartcoder/ControlCoursework1.git} 
         Version 0.0.1. Last updated:~\today.}
 \begin{document}
 
@@ -93,17 +93,11 @@
 
 \section{Part A}
 
-NOTE: CTRL + F9 is the shortcut to compile on Papeeria
-% * <jboden03@qub.ac.uk> 12:28:30 04 Dec 2020 UTC+0000:
-% This is useful
-% ^ <Jonathan Tutty> 15:11:46 05 Dec 2020 UTC+0000:
-% Good to know, ty
-
 \subsection{Problem A1}\label{sec:a1}
 % * <jboden03@qub.ac.uk> 14:10:20 04 Dec 2020 UTC+0000:
 % NB. I have collapsed Part A1 - it is here
-The objective of this question was to use the information provided in the problem description to derive a system of ordinary differential equation describing how the input voltage, V, affects the position, $x$, of the ball on the inclined plane.
-\newline An inerital frame of reference was introduced where counterclockwise rotations were taken to be positive as shown in Figure \ref{fig:system}.
+The objective of this question was to use the information provided in the problem description to derive a system of ordinary differential equations describing how the input voltage, V, affects the position, $x$, of the ball on the inclined plane.
+\newline An inertial frame of reference was introduced where counterclockwise rotations were taken to be positive as shown in Figure \ref{fig:system}.
 
 \begin{figure}[h]
 \centering
@@ -111,95 +105,72 @@ The objective of this question was to use the information provided in the proble
 \caption{The system of a wooden ball on an inclined plane, involving a spring, damper and electromagnet controlled by a voltage V. Resolved forces are indicated in green.}
 \label{fig:system}
 \end{figure}
-
-\newline Initally, we can derive an equation to represent the static friction, $T$, acting on the system as follows:
-\newline It is known that the friction creates a torque on the ball with respect to its centre of mass. From Figure xyz, we can see this is equal to the Friction multiplied by the radius, i.e. $Tr$.
-\newline Applying Newton's law for rotational motion leads to the following equation:
+Initially, we can derive an equation to represent the static friction, $T$, acting on the system as follows:
+It is known that the friction creates a torque on the ball with respect to its centre of mass. From Figure \ref{fig:system}, we can see this is equal to the friction multiplied by the radius, i.e. $Tr$. 
+Applying Newton's law for rotational motion leads to the following equation:
 
 \begin{align}
 \label{1.1}
 Tr &= I\ddot{\theta}
 \end{align}
-
-\newline where \ddot{\theta} represents the ball's angular acceleration. Recalling that the angular acceleration and linear acceleration, \ddot{x}, are linked by the following equation:
-
+where $\ddot{\theta}$ represents the ball's angular acceleration. Recalling that the angular acceleration and linear acceleration, $\ddot{x}$, are linked by the following equation:
 \begin{align}
-\ddot{x} &= \ddot{\theta}r \label{1.2} \\
+\ddot{x} &= - \ddot{\theta}r \label{1.2} \\
 \intertext{Rearranging, we see that:}
-\ddot{\theta} &= \frac{\ddot{x}}{r} \label{1.3}
+\ddot{\theta} &= - \frac{\ddot{x}}{r} \label{1.3}
 \end{align}
-
-\newline Substitution of \ref{1.3} into \ref{1.1} leads to the following equation for the friction:
+Substitution of \eqref{1.3} into \eqref{1.1} leads to the following equation for the friction:
 
 \begin{align}
-Tr &= I\bigg(\frac{\ddot{x}}{r}\bigg)\nonumber\\
-Tr &= \frac{I_n\ddot{x}}{r} \nonumber \\
+Tr &= I\bigg(- \frac{\ddot{x}}{r}\bigg) = -\frac{I_n\ddot{x}}{r} \nonumber \\ 
 \intertext{therefore:}
-T &= \frac{I_n\ddot{x}}{r^2} \label{1.4}
+T &= - \frac{I_n\ddot{x}}{r^2} \label{1.4}
 \end{align}
-
-\newline We can also substitute for $I_n$, the moment of inertia of the ball.
-\newline For a ball where an axis runs through its centre, $I_n = \frac{2}{5}mr^2$.
-\newline The equation for friction therefore becomes:
-
+We can also substitute for $I_n$, the moment of inertia of the ball. 
+For a ball where an axis runs through its centre, $I_n = \frac{2}{5}mr^2$. The equation for friction therefore becomes:
 \begin{align}
-T &= \frac{\frac{2}{5}m\cancel{r^2}\ddot{x}}{\cancel{r^2}} \nonumber \\
-T &= \frac{2}{5}m\ddot{x} \label{1.5}
+T &= -\frac{\frac{2}{5}m\cancel{r^2}\ddot{x}}{\cancel{r^2}} \nonumber \\
+\Rightarrow& T = - \frac{2}{5}m\ddot{x} \label{1.5}
 \end{align}
 \vspace{3mm}
-
-\newline A system of ordinary differential equations that describe the system can now be derived as follows:
+A system of ordinary differential equations that describe the system can now be derived as follows:
 \begin{align}
-F_{mag} + mg\sin(\phi) - b\dot{x} - k(x - d) - T &= m\ddot{x} \nonumber \\
-c \frac{I^2}{y^2} + mg\sin(\phi) - b\dot{x} - k(x - d) - T &= m\ddot{x} \nonumber \\
+F_{mag} + mg\sin(\phi) - b\dot{x} - k(x - d) + T &= m\ddot{x} \nonumber \\
+c \frac{I^2}{y^2} + mg\sin(\phi) - b\dot{x} - k(x - d) + T &= m\ddot{x} \nonumber \\
 \intertext{substituting for $T$ and also for $y$:}
 c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) - \frac{2}{5}m\ddot{x} &= m\ddot{x} \nonumber \\
 c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) &= m\ddot{x} + \frac{2}{5}m\ddot{x}\nonumber \\
 c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x - d) &= \frac{7}{5}m\ddot{x}\nonumber
 \end{align}
-
 rearranging to determine $\ddot{x}$:
 
 \begin{align}
 \ddot{x} &= \frac{c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x-d)}{\frac{7}{5}m} \label{1.6}
 \end{align}
-
 rearranging this leads to an equation summarising the balls acceleration:
 
 \begin{align}
 \ddot{x} &= \frac{5}{7m}\bigg(c \frac{I^2}{(\delta - x)^2} + mg\sin(\phi) - b\dot{x} - k(x-d)\bigg) \label{1.7}
 \end{align}
-
-\newline From the circuit given in the problem description, we can establish that:
+From the circuit given in the problem description, we can establish that:
 $V = IR + L\dot{I}$
 \intertext{, therefore:}
 \begin{equation}
-  \dot{I} = \frac{V - IR}{L} \label{1.8}
+  \dot{I} = \frac{V - IR}{L} \label{1.8}   
 \end{equation}
-
-
-\newline From the problem description, we are told that:
-\begin{align}
-L = L_0 + L_1\exp(-\alpha y) \label{1.9}
-\end{align}
-
-\newline Substituting \ref{1.9} into \ref{1.8} leads to the following equation:
-
+From the problem description, we are told that: $L = L_0 + L_1\exp(-\alpha y)$
+Substituting this equation into \eqref{1.8} leads to the following equation:
 \begin{align}
 \dot{I} = \frac{V - IR}{L_0 + L_1\exp(-\alpha y)} \label{1.10}
 \end{align}
-
-\newline In order to have the overall equations in terms of the variables $x$ and $V$ only, $y$ is replaced with the equivalent term `$\delta - x$':
-
+In order to have the overall equations in terms of the variables $x$ and $V$ only, $y$ is replaced with the equivalent term `$\delta - x$':
 \begin{align}
 \dot{I} = \frac{V - IR}{L_0 + L_1\exp(-\alpha (\delta - x))} \label{1.11}
 \end{align}
-
-\newline Overall, we can describe the system using equations \ref{1.7} and \ref{1.11}
+Overall, we can describe the system using equations \eqref{1.7} and \eqref{1.11}
 
 \subsection{Problem A2}\label{sec:a2}
-We can now write the system in state space representation, using the two equations obtained in \ref{sec:a1}.
-
+We can now write the system in a state space representation, using the two equations obtained in \ref{sec:a1}.
 We can firstly define three new variables as follows:
 
 \begin{align}
@@ -207,27 +178,21 @@ x_1 &= x \label{1.12} \\
 x_2 &= \dot{x_1} (= \dot{x}) \label{1.13} \\
 x_3 &= I \label{1.14}
 \end{align}
-
-\newline We can now rewrite \ref{1.7} and \ref{1.10} using these new variables as follows:
+We can now rewrite \eqref{1.7} and \eqref{1.10} using these new variables as follows:
 
 \begin{align}
 \dot{x_2} &= \frac{5}{7m}\bigg(c \frac{{x_3}^2}{(\delta - x_1)^2} + mg\sin(\phi) - bx_2 - k(x_1-d)\bigg) \label{1.15} \\
 \dot{x_3} &= \frac{V - x_3 R}{L_0 + L_1\exp(-\alpha y)} \label{1.16}
 \end{align}
-
-Equations \ref{1.15} and \ref{1.16} can be used to express the system in a state space representation as follows:
-
+Equations \eqref{1.15} and \eqref{1.16} can be used to express the system in a state space representation as follows:
 \begin{align}
-\begin{bmatrix}
-\dot{x}
-\end{bmatrix}
-=
+\dot{z} = 
 \begin{bmatrix}
 \dot{x_1}\\
 \dot{x_2}\\
 \dot{x_3}
 \end{bmatrix}
-=
+= 
 \begin{bmatrix}
 x_2 \\
 \frac{5}{7m}\bigg(c \frac{{x_3}^2}{(\delta - x_1)^2} + mg\sin(\phi) - bx_2 - k(x_1-d)\bigg)\\
@@ -235,14 +200,11 @@ x_2 \\
 \end{bmatrix}
 \label{1.17}
 \end{align}
-
-The states of the system are $x_1$ and $x_2$, while the input is $x_3$, the current. All other terms in the equation are constants.
-
+The states of the system, $\dot{z} = f(\dot{x_1}, \dot{x_2}, \dot{x_3}, V)$ are $x_1$, $x_2$ and $x_3$, while the input is $V$, the voltage. All other terms in the equation are constants.
 
 
 \subsection{Problem A3}\label{sec:a3}
 The equilibrium points of the system are characterised in \eqref{eq:eq_points}.
-
 \begin{subequations}\label{eq:eq_points}
 \begin{align}
       x^{eq}_{2} &= 0 \label{1.18a} \\
@@ -252,10 +214,8 @@ The equilibrium points of the system are characterised in \eqref{eq:eq_points}.
 \end{subequations}
 
 
-
 \subsection{Problem A4}\label{sec:a4}
-We subtract (\ref{1.13}) and (\ref{eq:eq_points}) by parts to obtain
-
+We subtract (\ref{1.17}) and (\ref{eq:eq_points}) by parts to obtain
 \begin{subequations}
      \begin{align}
           \dot{x_1} &= x_2 - x_2^{eq} \\
@@ -264,15 +224,13 @@ We subtract (\ref{1.13}) and (\ref{eq:eq_points}) by parts to obtain
      \end{align}
 \end{subequations}
 We define the functions
-
 \begin{subequations}
     \begin{align}
          \phi(x_1, x_2, x_3) = \dot{x_2} &= \frac{5}{7m}\left[\frac{cx_3^2}{(\delta - x_2)^2} - \frac{c(x_3^{eq})^2}{(\delta - x_2^{eq})^2} - k(x_1 - x_1^{eq}) - b(x_2 - x_2^{eq})\right] \\
          \psi(V, x_1, x_3) = \dot{x_3} &= \frac{V - x_3R}{L_0 + L_1\exp(-\alpha(\delta - x_1))} - \frac{V^{eq} - x_3^{eq}R}{L_0 + L_1\exp(-\alpha(\delta - x_1^{eq}))}
     \end{align}
 \end{subequations}
-
-We linearised $\phi$ at an equilibrium $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its partial derivatives with respect to $x_1, x_2$ and $x_3$ at the equilibrium point are
+We linearised $\phi$ at an equilibrium point $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its partial derivatives with respect to $x_1, x_2$ and $x_3$ at the equilibrium point are
 
 \begin{subequations}\label{eq:phiDeriv}
      \begin{align}
@@ -281,31 +239,27 @@ We linearised $\phi$ at an equilibrium $(x_1^{eq}, x_2^{eq}, x_3^{eq})$. Its par
           A_3 = \frac{\partial\phi}{\partial x_3}\Bigg|_{x_1^{eq}, x_2^{eq}, x_3^{eq}} &= \frac{10 c x_{3}^{eq}}{7 m \left(\delta - x_{1}^{eq}\right)^{2}}
      \end{align}
 \end{subequations}
-
 For notational convenience, we defined the partial derivatives as $A_1$, $A_2$ and $A_3$, therefore, $\phi(x_1, x_2, x_3)$ can be approximated by
 \begin{equation}
      \phi(x_1, x_2, x_3) \approx A_1(x_1 - x_1^{eq}) + A_2(x_2 - x_2^{eq}) + A_3(x_3 - x_3^{eq})
 \end{equation}
-
 We linearised $\psi$ at an equilibrium $(V^{eq}, x_1^{eq}, x_3^{eq})$. Its partial derivatives with respect to $V, x_1$ and $x_3$ at the equilibrium point are
 
 \begin{subequations}\label{eq:psiDeriv}
      \begin{align}
         B_1 = \frac{\partial\psi}{\partial V}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= \frac{1}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}} \\
-        B_2 = \frac{\partial\psi}{\partial x_2}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V^{eq}\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \\
+        B_2 = \frac{\partial\psi}{\partial x_1}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{L_{1} \alpha \left(- R x_{3}^{eq} + V^{eq}\right) e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}{\left(L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}\right)^{2}} \\
         B_3 = \frac{\partial\psi}{\partial x_3}\Bigg|_{V^{eq}, x_1^{eq}, x_3^{eq}} &= - \frac{R}{L_{0} + L_{1} e^{- \alpha \left(\delta - x_{1}^{eq}\right)}}
      \end{align}
 \end{subequations}
-
 For notational convenience, we defined the partial derivatives as $B_1$, $B_2$ and $B_3$, therefore, $\psi(V, x_1, x_3)$ can be approximated by
 \begin{equation}
      \psi(V, x_1, x_3) \approx B_1(V - V^{eq}) + B_2(x_1 - x_1^{eq}) + B_3(x_3 - x_3^{eq})
 \end{equation}
 
-N.B.: The code used to determine all the partial derivatives can be found at XYZ
+N.B. The code used to determine all the partial derivatives can be found at: \url{https://github.com/JBdartcoder/ControlCoursework1.git}
 
 We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overline{x}_2 = x_2-x_2^{eq}, \overline{x}_3 = x_3-x_3^{eq}$ and $\overline{V} = V-V^{eq}$. The linearised system then becomes
-
 \begin{subequations}\label{eq:linear_system}
      \begin{align}
           \dot{\overline{x}}_1 &= \overline{x}_2 \\
@@ -325,23 +279,17 @@ We now introduce the deviation variables $\overline{x}_1 = x_1-x_1^{eq}, \overli
      \caption{Block diagram of the system's transfer function}
      \label{fig:tfBlock}
 \end{figure}
-
 The equation for the transfer function of a dynamical system is
-
 \begin{equation}
      G(s) = \frac{X(s)}{U(s)} \label{eq:TF} \\
 \end{equation}
-
 \begin{center}
      where $X(s)$ is the input (s-domain), \\
      and $U(s)$ is the output (s-domain)
 \end{center}
 \vspace{10pt}
-
 The transfer function of the system can be represented by the block diagram shown in figure \ref{fig:tfBlock}.
-
-Then the Laplace transform is applied to equations \ref{eq:linear_system}. This gives
-
+Then the Laplace transform is applied to equations \eqref{eq:linear_system}. This gives
 \begin{subequations} \label{eq:SysLT}
     \begin{align}
          s\overline{X}_1(s) &= \overline{X}_2(s) \label{eq:sX1} \\
@@ -350,59 +298,45 @@ Then the Laplace transform is applied to equations \ref{eq:linear_system}. This 
     \end{align}
 \end{subequations}
 \vspace{1pt}
-
-In order to find the tranfer function, an expression for $\overline{X}_1(s)$ in terms of $\overline{V}(s)$ must be found. To do this two expressions for $\overline{X}_3(s)$ can be found and then solved simultaneously.\\
-The first expression is determined by substituting \ref{eq:sX1} into \ref{eq:sX2}
-
+In order to find the transfer function, an expression for $\overline{X}_1(s)$ in terms of $\overline{V}(s)$ must be found. To do this two expressions for $\overline{X}_3(s)$ can be found and then solved simultaneously.\\
+The first expression is determined by substituting \eqref{eq:sX1} into \eqref{eq:sX2}
 \begin{align*}
-     s^2\overline{X}_1(s) &= A_1(s)\overline{X}_1(s) + A_2(s)\overline{X}_2(s) + A_3(s)\overline{X}_3(s) \\
-     \iff s^2\overline{X}_1(s) &= A_1(s)\overline{X}_1(s) + sA_2(s)\overline{X}_1(s) + A_3(s)\overline{X}_3(s) \\
-     \iff A_3(s)\overline{X}_3(s) &= s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)
+     &~ s^2\overline{X}_1(s) = A_1(s)\overline{X}_1(s) + A_2(s)\overline{X}_2(s) + A_3(s)\overline{X}_3(s) \\
+     \Leftrightarrow&~ s^2\overline{X}_1(s) = A_1(s)\overline{X}_1(s) + sA_2(s)\overline{X}_1(s) + A_3(s)\overline{X}_3(s) \\
+     \Leftrightarrow&~ A_3(s)\overline{X}_3(s) = s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)
 \end{align*}
 \vspace{1pt}
-
 Therefore,
-
 \begin{equation}
      \overline{X}_3(s) =\frac{s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)}{A_3(s)} \label{eq:X3_1}
 \end{equation}
 \vspace{1pt}
-
-Likewise, the second expression is determined by rearranging \ref{eq:sX4}:
-
+Likewise, the second expression is determined by rearranging \eqref{eq:sX4}:
 \begin{align*}
-     s\overline{X}_3(s) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) + B_3(s)\overline{X}_3(s) \\
-     \iff s\overline{X}_3(s) - B_3(s)\overline{X}_3(s) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) \\
-     \iff \overline{X}_3(s)\left(s - B_3(s)\right) &= B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)
+     &~ s\overline{X}_3(s) = B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) + B_3(s)\overline{X}_3(s) \\
+     \Leftrightarrow&~ s\overline{X}_3(s) - B_3(s)\overline{X}_3(s) = B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s) \\
+     \Leftrightarrow&~ \overline{X}_3(s)\left(s - B_3(s)\right) = B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)
 \end{align*}
 \vspace{1pt}
-
 Therefore,
-
 \begin{equation}
      \overline{X}_3(s) &= \frac{B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)}{s - B_3(s)} \label{eq:X3_2}
 \end{equation}
 \vspace{1pt}
-
-Equations \ref{eq:X3_1} and \ref{eq:X3_2} can now be solved simultaneously
-
+Equations \eqref{eq:X3_1} and \eqref{eq:X3_2} can now be solved simultaneously
 \begin{align*}
-     \frac{s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)}{A_3(s)} \label{eq:X3_1} &= \frac{B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)}{s - B_3(s)} \label{eq:X3_2} \\
-     \iff \left(s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)\right) \left(s - B_3(s)\right) &= A_3(s)B_1(s)\overline{V}(s) + A_3(s)B_2(s)\overline{X}_1(s) \\
-     \iff \overline{X}_1(s)\left(s^2 - A_1(s) - sA_2(s)\right) \left(s - B_3(s)\right) - A_3(s)B_2(s)\overline{X}_1(s) &= A_3(s)B_1(s)\overline{V}(s) \\
-     \iff \overline{X}_1(s)\left[\left(s^2 - A_1(s) - sA_2(s)\right) \left(s - B_3(s)\right) - A_3(s)B_2(s)\right] &= A_3(s)B_1(s)\overline{V}(s)
+     &~ \frac{s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)}{A_3(s)} \label{eq:X3_1} = \frac{B_1(s)\overline{V}(s) + B_2(s)\overline{X}_1(s)}{s - B_3(s)} \label{eq:X3_2} \\
+     \Leftrightarrow&~ \left(s^2\overline{X}_1(s) - A_1(s)\overline{X}_1(s) - sA_2(s)\overline{X}_1(s)\right) \left(s - B_3(s)\right) = A_3(s)B_1(s)\overline{V}(s) + A_3(s)B_2(s)\overline{X}_1(s) \\
+     \Leftrightarrow&~ \overline{X}_1(s)\left(s^2 - A_1(s) - sA_2(s)\right) \left(s - B_3(s)\right) - A_3(s)B_2(s)\overline{X}_1(s) = A_3(s)B_1(s)\overline{V}(s) \\
+     \Leftrightarrow&~ \overline{X}_1(s)\left[\left(s^2 - A_1(s) - sA_2(s)\right) \left(s - B_3(s)\right) - A_3(s)B_2(s)\right] = A_3(s)B_1(s)\overline{V}(s)
 \end{align*}
 \vspace{1pt}
-
 Therefore,
-
 \begin{equation}
      \overline{X}_1(s) = \frac{A_3(s)B_1(s)\overline{V}(s)}{\bigl(s^2 - sA_2(s) - A_1(s)\bigr) \bigl(s - B_3(s)\bigr) - A_3(s)B_2(s)} \label{eq:X1}
 \end{equation}
 \vspace{1pt}
-
-Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and $\overline{V}(s)$ is the output, it can be seen that the transfer function of the system is
-
+Using equation \eqref{eq:TF}, and given that equation \eqref{eq:X1} is the input and $\overline{V}(s)$ is the output, it can be seen that the transfer function of the system is
 \begin{empheq}[box={\setlength{\fboxsep}{10pt}\colorbox{grey}}]{equation}\label{eq:SysTF}
 % * <Jonathan Tutty> 15:45:52 07 Dec 2020 UTC+0000:
 % I added the "empheq" package to emphasise the most important equations as I think it makes the report a bit easier to read.
@@ -414,145 +348,119 @@ Using equation \ref{eq:TF}, and given that equation \ref{eq:X1} is the input and
 \section{Part B}
 
 \subsection{Problem B1}\label{sec:b1}
-Include all info on start of B1 here. The following relates to the second half of B1:
-We also need to determine the equilibrium voltage and current as a function of $x^e$.
-
+% We also need to determine the equilibrium voltage and current as a function of $x^e$.
 Using (\ref{1.18b}) and applying (\ref{1.18a}), we can establish that
 \begin{align}
 \textcolor{orange}{c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2}} + \textcolor{blue}{mg\sin(\phi) - \cancelto{0}{bx_2^{eq}} - k(x_1^{eq}-d)} &= 0 \label{PartBstart}
 \end{align}
-Let us consider first the blue section of (\ref{PartBstart}). For the ball to equilibriate, there must be forces acting upon it in both directions. When the ball is at $x_{min}$, we know that the orange part of the equation will be acting downwards. The combination of the other 2 non-zero components must not become less than 0, otherwise the ball will not be able to settle in an equilibium position.
-We can therefore say the following,
-\begin{align}
-mg \sin (\phi) - k(x_{min} - d) &= 0 \nonumber \\
-\Leftrightarrow k(x_{min} - d) &= mg \sin (\phi) \nonumber \\
-\Leftrightarrow x_{min} - d &= \frac {mg \sin (\phi) }{k } \nonumber \\
-\Leftrightarrow x_{min} &= \frac {mg \sin (\phi) }{k } + d \label{PartB1xmin}
-\end{align}
-
-Let us now consider the orange section of (\ref{PartBstart}). For the ball to equilibriate, the ball cannot go beyond the centre of the inductor, otherwise both the overall forces from the orange and blue section acting on the system would be to the left, and hence the ball could not equilibriate in this area. In order to find the maximum $x$-position of the ball, we can find when this orange section equals 0 and determine the corresponding $x$ value.
+Let us consider the orange section of (\ref{PartBstart}). For the ball to equilibrate, it cannot go beyond the centre of the inductor, otherwise the overall forces from the orange section, and the blue section would be acting to the left, and hence the ball could not equilibrate in this area. In order to find the maximum $x$-position of the ball, we can find when this orange section representing $F_{mag} = 0$. This is when the ball is aligned with the magnet, representing its maximum $x$-position.
 \begin{align}
 c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} &= 0 \label{x1_max}
 \end{align}
-The only mathematically possible way this can occur is if
-\begin{align}
-c(x_3^{eq})^2 = 0 \label{eqn: B1x_3eqn}
-\end{align}
-
-
+The only mathematically possible way this can occur is if $c(x_3^{eq})^2 = 0$
 Using (\ref{1.18c}), we can determine the following:
 \begin{align}
 V - x_3^{eq}R &= 0 \nonumber \\
-\Leftrightarrow x_3^{eq} &= \frac{V}{R} \label{eqn: x3eq}
+\Leftrightarrow x_3^{eq} &= \frac{V}{R} \label{eqn: x3eq} \\
+\Leftrightarrow c(\frac{V}{R})^2 &= 0 \label{orangeeqn}
 \end{align}
-where $x_3^{eq}$ is the equilibrium current.
-\end{align}
-Application of (\ref{eqn: x3eq})to (\ref{eqn: B1x_3eqn}) leads to the following:
-\begin{align}
-c(\frac{V}{R})^2 = 0 \label{orangeeqn}
-\end{align}
-It is clear that the only variable in (\ref{orangeeqn}) is $V$, therefore, for this equation to equal 0, $V$ must equal 0.
-In order to determine the corresponding $x_{max}$ value when $V = 0$, we can use (\ref{1.18b}) again to determine an equation in $x_1$ and $V$.
-
-From (\ref{1.18b}), which is rewritten below for clarity, we can determine the following:
+The only variable we can control in (\ref{orangeeqn}) is $V$, therefore, for this equation to equal 0, $V$ must equal 0.
+To determine the corresponding $x_{max}$ value when $V = 0$, we can use (\ref{1.18b}) again to determine an equation in $x_1$ and $V$.
 
 \begin{align}
 \frac{5}{7m}\bigg(c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d)\bigg) &= 0 \nonumber \\
-\intertext{Either $\frac{5}{7m} = 0$ or the bracted section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the constant value of $m$, this leads to the following conclusion:}
+\intertext{Either $\frac{5}{7m} = 0$ or the bracketed section of the equation equals 0. As it is impossible for $\frac{5}{7m} = 0$ given the constant value of $m$, this leads to the following conclusion:}
 c \frac{({x_3}^{eq})^2}{(\delta - x_1^{eq})^2} + mg\sin(\phi) - bx_2^{eq} - k(x_1^{eq}-d) &= 0 \nonumber \\
 c(x_3^{eq})^2 + mg\sin(\phi)(\delta - x_1^{eq})^2 - k(x_1^{eq} - d)(\delta - x_1^{eq})^2 &= 0 \nonumber \\
-\intertext{Substituting \ref{eqn: x3eq}}
+\intertext{Substituting (\ref{eqn: x3eq}) and expanding:}
 c\frac{V^2}{R^2} + mg\sin(\phi)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) - k(x_1^{eq} - d)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) &= 0 \nonumber \\
 c\frac{V^2}{R^2} + mg\sin(\phi)(\delta^2 - 2 \delta x_1^{eq} + (x_1^{eq})^2) - k(\delta^2 x_1^{eq} - 2\delta (x_1^{eq})^2 + (x_1^{eq})^3 -d\delta^2 + 2d\delta x_1^{eq} - d(x_1^{eq})^2) &= 0 \nonumber \\
-c\frac{V^2}{R^2} + (x_1^{eq})^3(-k) + (x_1^{eq})^2(mg\sin(\phi) + 2k\delta +dk) + x_1^{eq}(-2\delta mg\sin(\phi) - k\delta^2 -2dk\delta) + (\delta^2mg\sin(\phi) + kd\delta^2) &= 0 \nonumber \\
-\bigg(\frac{R^2}{c}\bigg((x_1^{eq})^3(k) + (x_1^{eq})^2(-mg\sin(\phi) - 2k\delta -dk) + x_1^{eq}(2\delta mg\sin(\phi) + k\delta^2 +2dk\delta) \nonumber \\  + (-\delta^2mg\sin(\phi) - kd\delta^2)\bigg)\bigg)^\frac{1}{2} &= V \nonumber \\
+% c\frac{V^2}{R^2} + (x_1^{eq})^3(-k) + (x_1^{eq})^2(mg\sin(\phi) + 2k\delta +dk) \nonumber \\ + x_1^{eq}(-2\delta mg\sin(\phi) - k\delta^2 -2dk\delta) + (\delta^2mg\sin(\phi) + kd\delta^2) &= 0 \nonumber \\
+\bigg(\frac{R^2}{c}\bigg((x_1^{eq})^3(k) + (x_1^{eq})^2(-mg\sin(\phi) - 2k\delta -dk) \nonumber \\ + x_1^{eq}(2\delta mg\sin(\phi) + k\delta^2 +2dk\delta)   + (-\delta^2mg\sin(\phi) - kd\delta^2)\bigg)\bigg)^\frac{1}{2} &= V \nonumber \\ 
 \intertext{Substituing for the constants,}
-\Leftrightarrow 774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01x_1^{eq} - 137991.22 &= V^2 \label{eqn: B1deriv}
+\Leftrightarrow (774896.55((x_1^{eq})^3) - 1333971.97((x_1^{eq})^2) + 751982.01x_1^{eq} - 137991.22)^{\frac{1}{2}} &= V \label{eqn: B1deriv}
 \end{align}
-
-A plot of this equation is shown below.
+A plot of this equation is shown in Figure \ref{fig:B1plot}.
 \begin{figure}[h]
 \centering
-\includegraphics[width=10cm]{figures/ProblemB1}
-\caption{A plot to determine the maximum equilibrium voltage, and the corresponding $x$-position....}
+\includegraphics[width=10cm]{figures/ProblemB1edit}
+\caption{A plot to determine the maximum equilibrium voltage, and the corresponding $x$-position}
 \label{fig:B1plot}
 \end{figure}
-
-From Figure \ref{fig:B1plot} t, we can see that the value of $x_{max}$ we were trying to determine when $V = 0$ is found at 0.65m. This is equal to $\delta$, therefore satisfying Problem B1. It can also be shown that the second point at which this plot meets the $x$-axis is at $x_1 = 0.42148$m. This is the same value obtained following substitution of the constants into (\ref{PartB1xmin}), thereby verifying our derivation of this point as well.
+From Figure \ref{fig:B1plot}, we can see that the value of $x_{max}$ we were trying to determine (when $V = 0$) is found at 0.65~m. This is equal to $\delta$, therefore satisfying Problem B1.
+Let us consider the blue section of (\ref{PartBstart}). For the ball to equilibrate, there must be forces acting upon it in both directions. When the ball is at $x_{min}$, we know that the orange part of the equation will be acting downwards. The combination of the other 2 non-zero components must not become less than 0, otherwise the ball will not be able to settle in an equilibrate position.
+We can therefore say the following,
+\begin{align}
+mg \sin (\phi) - k(x_{min} - d) &= 0 \nonumber \\
+\Leftrightarrow x_{min} &= \frac {mg \sin (\phi) }{k } + d \label{PartB1xmin}
+\end{align}
 Overall, we can agree with Problem B1 and state that
 \begin{align}
 x_{min} < x^e < x_{max},
 \end{align}
 where $x_{min} = d + \frac{mg\sin(\phi)}{k}$ and $x_{max} = \delta$.
-
-From the plot, we can also see that the maximum equilibrium voltage value is $37.0111$ V. The corresponding $x$-position where this maximum voltage occurs is $0.4976$ m.
-
+ It can also be shown that the second point at which Figure \ref{fig:B1plot} meets the $x$-axis is at $x_1 = 0.42148$~m. This is the same value obtained following substitution of the constants into (\ref{PartB1xmin}), thereby verifying our derivation of this point as well.
+From the plot, we can also see that the maximum equilibrium voltage value is $37.0111$~V. The corresponding $x$-position where this maximum voltage occurs is $0.4976$~m.
 
 We now need to linearise the system at the equilibrium point that corresponds to $x=0.75x_{min}+0.25x_{max}$.
-This can be done by substituting the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows.
+This can be done by substituting the equations for $x_{min}$, $x_{max}$ into this equation along with any constants provided in the problem description as follows
 
 \begin{align}
-x &= 0.75x_{min} + 0.25 x_{max}\nonumber \\
 x_1^{eq} &= 0.75 \bigg(d + \frac{mg \sin{\phi}}{k}\bigg) + 0.25 \delta \nonumber \\
 \intertext{therefore, substituting for the constant values:}
-x_1^{eq} &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42 \circ)}}{1880}\bigg) + 0.25(0.65) \nonumber \\
-x_1^{eq} &= 0.47861 \label{eqn: xvalue}
+x_1^{eq} &= 0.75 \bigg(0.42 + \frac{(0.425)(9.81) \sin{(42^ \circ)}}{1880}\bigg) + 0.25(0.65) = 0.47861 \label{eqn: xvalue}
 \end{align}
-
 We can also determine the corresponding equilibrium voltage by substitution of $x_1^{eq}$ into (\ref{eqn: B1deriv}).
 This leads to the following:
 \begin{align}
 (V^e)^2 &= 1300.24005 \nonumber \\
-\Leftrightarrow V^e &= \pm 36.0588 V \nonumber \\
-\intertext{We will only consider the Voltage being a positive value, therefore}
-\Leftrightarrow V^e &= 36.0588 V \label{eqn: Ve value}
+\Leftrightarrow V^e &= \pm 36.0588~V \nonumber \\
 \end{align}
-
-
+We will only consider the Voltage being a positive value, therefore $V^e &= 36.0588$~V
 
 \subsection{Problem B2}\label{sec:b2}
 
-To verify the system linearisation that was determined in Problem A4 we took the input voltage equal to $V^e$ for all $t \geq 0$ and the initial state of the system close to its equilibrium value. We have writtem two Python files which can be found on GitHub that simulate both the nonlinear dynamical system we determined in Problem A2 and its linearisation.\par
-
-
+To verify the system linearisation that was determined in Problem A4 we took the input voltage equal to $V^e$ for all $t \geq 0$ and the initial state of the system close to its equilibrium value. We have written two Python files which can be found on GitHub that simulate both the nonlinear dynamical system we determined in Problem A2 and its linearisation.\par
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{figures/B2plots}
 \caption{These plots show the simulation of the nonlinear dynamical system which was determined in Problem A2.}
 \label{fig:B2plots}
 \end{figure}
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{figures/B2part2plots}
 \caption{These plots show the simulation of the linearised dynamical system which was determined in Problem A4.}
 \label{fig:B2part2plots}
 \end{figure}
-
-Figure \ref{fig:B2plots} shows the simulation of the nonlinear dynamical system and Figure \ref{fig:B2part2plots} shows the simulation of the linearised system. These two responses are similar in all three graphs. The graph of $x_1$ in Figure \ref{fig:B2plots} shows many oscillations before the graph converges to $x_1^{eq}$ which has a value of 0.479m. The linearised system shows this same behaviour in the first graph of Figure \ref{fig:B2part2plots} with the only difference being that fewer oscillations take place before it converges to $x_1^{eq}$.\par
+Figure \ref{fig:B2plots} shows the simulation of the nonlinear dynamical system and Figure \ref{fig:B2part2plots} shows the simulation of the linearised system. These two responses are similar in all three graphs. The graph of $x_1$ in Figure \ref{fig:B2plots} shows many oscillations before the graph converges to $x_1^{eq}$ which has a value of 0.479~m. The linearised system shows this same behaviour in the first graph of Figure \ref{fig:B2part2plots} with the only difference being that fewer oscillations take place before it converges to $x_1^{eq}$.\par
 The graphs $x_2$ in Figures \ref{fig:B2plots} and \ref{fig:B2part2plots} have similar responses with both graphs converging on zero which is the value of $x_2^{eq}$ and the linearised system having fewer oscillations. The graphs of $x_3$ in both Figures have the same response by quickly increasing to the value of $V^{eq}$ and then remain at this level.\par
 According to the Hartman-Grobman theorem, if the linearised dynamical system is stable, then the nonlinear system behaves like a stable system close to the equilibrium point. From Figure \ref{fig:B2plots} it can be seen that the nonlinear system behaves like this close to the equilibrium point.
 
 
 \subsection{Problem B3}\label{sec:b3}
 The transfer function was simulated under the action of an impulse and step response using Python. The equations for the 2 responses are as follows.
+
 Impulse response:
 \begin{equation}
 \left(\left(0.3245 \sin{\left(31.294 t \right)} - 0.0655 \cos{\left(31.294 t \right)}\right) e^{163.82 t} + 0.0655 e^{8.74 t}\right) e^{- 172.5595 t}\left\right
 \end{equation}
+
 Step response:
 \begin{equation}
 \left(- \left(0.00463 \sin{\left(31.294 t \right)} + 0.00908 \cos{\left(31.294 t \right)}\right) e^{163.82 t} - 0.0004 e^{8.739 t} + 0.00948 e^{172.559 t}\right) e^{- 172.559 t}\left\right
 \end{equation}
-Both responses were plotted using the scipy signal package, and matplotlib. The plots are shown below.
+Both responses were plotted using the scipy signal package, and matplotlib. The plots are shown in Figures \ref{fig:B3_imp} (impulse) and \ref{fig:B3_step} (step).
 \begin{figure}[h]
     \minipage{0.47\textwidth}
         \includegraphics[width=\textwidth]{figures/Impulse}
     \caption{Plot of the impulse response of the transfer function}
+    \label{fig:B3_imp}
     \endminipage \hfill
     \minipage{0.47\textwidth}
         \includegraphics[width=\textwidth]{figures/Step}
     \caption{Plot of the step response of the transfer function}
+    \label{fig:B3_step}
     \endminipage
 \end{figure}
 
@@ -564,24 +472,24 @@ The scipy signal package was used to produce a bode plot of the transfer functio
 \caption{Plots of the magnitude and phase lag of the transfer function}
 \label{fig:B4bode}
 \end{figure}
-From the magnitude plot of (\ref{fig:B4bode}), there is a Low frequency assymtote of the magnitude at $-40$dB. The high frequencty assymtote of the magnitude has a slope of -55dB (which is almost -60dB) per logarithmic unit of frequency. The low frequency assymtote of the phase plot is at $0^\circ$ and the high frequency assymtote of the phases is between $-260^{\circ}$ and $-270^{\circ}$.
+From the magnitude plot of Figure \ref{fig:B4bode}, there is a low frequency asymptote of the magnitude at $-40$dB. The high frequency asymptote of the magnitude has a slope of -55dB (which is almost -60dB) per logarithmic unit of frequency. The low frequency asymptote of the phase plot is at $0^\circ$ and the high frequency asymptote of the phases is between $-260^{\circ}$ and $-270^{\circ}$.
 
 \subsection{Problem B5}\label{sec:b5}
 
 When designing a controller for the system that manipulates the voltage to steer the $x$-position of the ball towards a set point $x^{sp}$, it should meet some desired characteristics; the ball should move to the set point quickly and without oscillation, and it should not exhibit constant bias due to disturbances. To prove that the controller is good, a plot should be provided of the trajectory of $x(t)$ that clearly shows the aforementioned characteristics. For example, if it is specified that after 0.5~s, $x$ should not deviate more than 0.1~cm from $x^{sp}$, the graph should demonstrate this.
 
-\subsection{Problem B6} Figure \ref{fig:B6_plot} shows the $x(t)$ trajectory of the control system. The graph clearly shows that the controller exhibits the desired characteristics outlined in Section \ref{sec:b5}. It shows that $x_1$ returns quickly to the set point without oscillation, and there is no constant offset due to disturbances.
+\subsection{Problem B6} In order to control our system, a PID controller was implemented. Figure \ref{fig:B6_plot} shows the $x(t)$ trajectory of the control system. The graph clearly shows that the controller exhibits the desired characteristics outlined in Section \ref{sec:b5} when $K_d = 5$. It shows that $x_1$ returns quickly to the set point without oscillation, and there is no constant offset due to disturbances. This makes it  a good control system as the system behaves in the desired fashion and follows the desired criteria outlined in Problem B5.
 
 \begin{figure}[h]
      \includegraphics[width=0.5\textwidth]{figures/B6_plot.eps}
-     \caption{A controller for the system with varying values of $k_d$. $K_p = 70$, $K_i = 0.1$}
+     \caption{A controller for the system with varying values of $K_d$. $K_p = 70$, $K_i = 0.1$}
      \label{fig:B6_plot}
 \end{figure}
 
 
 \section{Part C}
 
-\subsection{Probelm C1}\label{sec:c1}
+\subsection{Problem C1}\label{sec:c1}
 The following function is defined in the Problem Description:
 \begin{align}
 f(t) = \ln t^3, t>0 \label{eqn: C1function}
@@ -595,29 +503,11 @@ Application of this to our function, $f(t)$ leads to the following:
 F(s) &= \int_{0}^{\infty} e^{-st} \ln t^3 \,dt, s>0  \nolabel \\
 \Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-st} 3\ln t \,dt  \label{eqn: C1beginning}
 \end{align}
-Integrating (\ref{eqn: C1function}) by parts will not simplify the integral - rather it will lead to the contrary. Instead a substitution method can be applied as follows.
+Integrating (\ref{eqn: C1function}) by parts will not simplify the integral - rather it will lead to the contrary. Instead, a substitution method can be applied as follows. Let $u =st$, then $\frac{\mathrm{d}u}{\mathrm{d}t} &= s$ and $\mathrm{d}t &= \frac{1}{s} \mathrm{d}u$.
+The limits of the integral also need to be considered. From the substitution above,  when $t &= 0$, $u &= 0 $. Also, when $t \rightarrow \infty$, $u \rightarrow \infty$.
+This indicates that the limits of the integral remain unchanged, provided $s>0$ as stated previously. Applying the substitution leads to the following:
 \begin{align}
-\intertext{let}
-u &=st \label{eqn: C1u} \\
-\Leftrightarrow \frac{\mathrm{d}u}{\mathrm{d}t} &= s \nolabel \\
-\Leftrightarrow \mathrm{d}t &= \frac{1}{s} \mathrm{d}u \label{eqn: c1dt}
-\end{align}
-The limits of the integral also need to be considered:
-\begin{align*}
-\intertext{from (\ref{eqn: C1u}), when}
-t &= 0 \\
-\intertext{then,}
-u &= 0
-\end{align*}
-Also, when
-\begin{align*}
-t \rightarrow \infty \\
-\intertext{then,}
-u \rightarrow \infty \\
-\end{align*}
-This indicates that the limits of the integral remain unchanged, provided $s>0$ as stated previously.
-\begin{align}
-\Leftrightarrow F(s) &= \int_{0}^{\infty} e^{-u} \textcolor{red}{3}\ln \bigg(\frac{u}{s}\bigg) \textcolor{red}{\frac{1}{s}} \,du  \nonumber \\
+F(s) &= \int_{0}^{\infty} e^{-u} \textcolor{red}{3}\ln \bigg(\frac{u}{s}\bigg) \textcolor{red}{\frac{1}{s}} \,du  \nonumber \\
 &= \textcolor{red}{\frac{3}{s}} \int_{0}^{\infty} e^{-u} \ln \bigg(\frac{u}{s}\bigg) \,du  \nonumber \\
 &= \frac{3}{s} \int_{0}^{\infty} e^{-u} (\ln u - \ln s) \,du  \nonumber \\
 &= \frac{3}{s} \bigg( \int_{0}^{\infty} e^{-u} \ln u \,du - \ln s  \int_{0}^{\infty} e^{-u} \,du \bigg) \nonumber \\
@@ -637,34 +527,30 @@ F(s) &= \frac{-3(\gamma + \ln s)}{s}, s>0 \label{eqn: C1final}
 which is the Laplace transform of $f(t)$.
 
 
-\subsection{Probelm C2}\label{sec:c2}
+\subsection{Problem C2}\label{sec:c2}
 
 The following function is defined in the Problem Description:
 
 \begin{equation}
     f(t) = |\cos(\omega t)|, t \geq 0, \omega > 0
 \end{equation}
-
-This is a periodic function with period $T = \pi$. Then,
+This is a periodic function with period, $T = \pi$. Then, 
 
 \begin{align}
 f_0(t) &= |cos(\omega t)|(1 - H_\pi(t)) \\
 &= \cos(\omega t)(1 - H_\pi(t)) \\
 &= \cos(\omega t) - \cos(\omega t)H_\pi(t)
 \end{align}
-
 The Laplace transform of $f_0$ can be determined by applying Theorem 4.14 (Shifted (delayed) functions) which can be found on page 95 of the textbook.
 
 \begin{align}
 (\lap f_0)(s) &= \lap\{\cos(\omega t)\} - \lap\{\cos(\omega t)H_\pi(t)\} \\
 &= \lap\{\cos(\omega t)\} - \lap\{\cos(\omega t - \pi)H_\pi(t)\}
 \end{align}
-
 Using the following property of Laplace transforms:
 \begin{equation}
     \lap\left\{e(t - t_0)H_{t_0}(t)\right\} = e^{-t_0 s}\lap{w(t)}
 \end{equation}
-
 therefore
 
 \begin{align}
@@ -673,7 +559,6 @@ therefore
      &= \frac{s - e^{-\pi s}s}{s^2 + \omega^2} \\
      &= \frac{s(1 - e^{-\pi s})}{s^2 + \omega^2}
 \end{align}
-
 From Theorem 4.24 (Laplace transform of periodic function, v2) found on page 105 of the textbook
 
 \begin{align}
@@ -743,95 +628,111 @@ Let \eqref{eq:fn}, below, be a counterexample to the rule outlined in the proble
      f_n(t) = e^t\big(H_{n^2 - n}(t) - H_{n^2 + n}(t)\big)
 \end{equation}
 \vspace{1pt}
-
 $f(t)$ can be calculated by applying the limit chain rule
 
 \begin{equation}
      f(t) = \lim_{n \to \infty} \bigg(e^t\big(H_{n^2 - n}(t) - H_{n^2 + n}(t)\big)\bigg)
 \end{equation}
 \vspace{1pt}
-
 let $u(n) = n^2 - n$, $w(n) = n^2 + n$, and $g(t) = e^t\big(H_u(t) - H_w(t)\big)$. It can be seen that both $\lim_{n \to \infty} (n^2 - n)$ and $\lim_{n \to \infty} (n^2 + n)$ tend to  $\infty$ as $n \to \infty$. Therefore
 
 \begin{equation}\label{eq:f_chainRule}
      f(t) = \lim_{n \to \infty} \bigg(e^t\big(H_{\infty}(t) - H_{\infty}(t)\big)\bigg)
 \end{equation}
 \vspace{1pt}
-
 since $H_a(t)$ is defined as
 
 \begin{equation}
-    H_a(t) =
+    H_a(t) = 
      \begin{cases}
          0 & \text{if } t < a \\
          1 & \text{if } t > a
      \end{cases}
 \end{equation}
 \vspace{1pt}
-
 therefore $H_{\infty}(t) \equiv 0$, so \eqref{eq:f_chainRule} becomes $f(t) = \lim_{n \to \infty} (e^t \cdot 0)$. This means that
 
 \begin{equation}
      f(t) = 0 \text{ and } F(s) = 0 \label{eq:F}
 \end{equation}
 \vspace{1pt}
-
 Now $F_n(s)$ must be found
 
 \begin{equation}
      F_n(s) = \lap\left\{e^t H_{n^2 - n}(t) - e^t H_{n^2 + n}(t)\right\}
 \end{equation}
 \vspace{1pt}
-
 Due to the linearity rule of Laplace transforms this can be written as
 
 \begin{equation}
      F_n(s) = \lap\left\{e^t H_{n^2 - n}(t)\right\} - \lap\left\{e^t H_{n^2 + n}(t)\right\}
 \end{equation}
 \vspace{1pt}
-
 The transform rule can now be applied. It states that if $\lap\left\{f(t)\right\} = F(s)$, then $\lap\left\{e^{at} f(t)\right\} = F(s - a)$. So $F_n(s)$ becomes
 
 \begin{equation}
      F_n(s - 1) = \frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}
 \end{equation}
 \vspace{1pt}
-
 therefore
 
 \begin{equation}
      \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}\right)
 \end{equation}
 \vspace{1pt}
-
 Then, by the linearity rule
 
 \begin{equation}
      \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1}\right) - \lim_{n \to \infty}\left(\frac{e^{-(n^2 + n)(s-1)}}{s-1}\right)
 \end{equation}
 \vspace{1pt}
-
 Evaluate the first limit with the limit chain rule. Let $u(n) = n^2 - n$ and $G(s - 1) = \frac{e^{-u(s - 1)}}{s - 1}$
 
 \begin{equation}
      \lim_{n \to \infty} (n^2 - n) \to \infty
 \end{equation}
 \vspace{1pt}
-
 Then it can be seen that
 
 \begin{equation}
      \lim_{n \to \infty} = \frac{e^{-\infty(s - 1)}}{s - 1} \to \text{Undefined}
 \end{equation}
 \vspace{1pt}
-
 since $\infty(s - 1)$ is undefined. Therefore
 
 \begin{equation}\label{eq:lim_Fn}
      \lim_{n \to \infty} \big(\lap\{f_n\}\big) = \lim_{n \to \infty} \left(\frac{e^{-(n^2 - n)(s-1)}}{s-1} - \frac{e^{-(n^2 + n)(s-1)}}{s-1}\right) \to \text{Undefined}
 \end{equation}
 \vspace{1pt}
-
 Equations \eqref{eq:F} and \eqref{eq:lim_Fn} show that $\lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big) \neq \lap\{f\}$ for the example in \eqref{eq:fn}. Therefore it can be concluded that for a sequence of time-domain functions $f_n$, $\lim_{n \to \infty} \big(\lap\left\{f_n\right\}\big)$ and $\lap\{f\}$ are only equal if $\lim_{n \to \infty} (\lap\{f_n\})$ converges.
 
+
+\section{Part D}
+
+\subsection{D1}\label{sec:d1}
+
+While collaborating on writing code we created a repository on GitHub. This allowed each of us to access all the code files and share ideas as well as providing easy version management. We used the issue tracker on GitHub which allowed us to create an issue and assign certain team members to complete or share ideas on how to fix the issue. Before we started each section of the coursework we had a Microsoft Teams meeting where we evenly divided up each section and decided on who should complete each problem. Then within the issue tracker we assigned each other the problems we decided in the meeting. If we had any issues or problems completing a certain section we posted a comment on the issue and assigned the other team members to ask for help and ideas. Our GitHub repository can be accessed by this link: \url{https://github.com/JBdartcoder/ControlCoursework1.git}
+
+
+\subsection{D2}\label{sec:d2}
+
+We were able to work well together as a team over the course of the project.
+\begin{itemize}
+     \item We were good at communicating with each other, holding several Microsoft Teams meetings to discuss the work we had done and what we should do next, and frequently using the issue tracker on GitHub.
+     \item For more complex problems we worked independently on a solution and then discussed our answers to see if they corroborated, and if not we were able to decide which we thought was correct. 
+     \item We decided to use Papeeria as our Latex editor rather than other online editors, such as Overleaf, as they limited the number of members who could contribute for free. It was also advantageous over local editors as it provided simultaneous collaboration that even Git could not offer where we could see what each person was typing in real time. This saved time as we never had to deal with clashes where two people were editing the same part at the same time. 
+     \item We were also good at dividing up the tasks in every section between each member, which we decided on the Teams meetings as mentioned in D1.
+\end{itemize}
+
+
+\subsection{D3}\label{sec:d3}
+As mentioned above, we generally worked well as a team throughout this project, however a few of the minor problems we faced and how we addressed them are as follows:
+\begin{itemize}
+  \item Initial team meetings: We planned to get together to discuss the coursework in a ``socially distanced'' manner, however new regulations prevented this. Instead, we made the most of online resources and used Microsoft Teams to discuss the problems. As we couldn't meet up we found it difficult during meetings to explain exactly what we were talking about at times – to overcome this, we converted any working out to a PDF format and provided each group member with a copy to help them follow along better.
+  \item Sharing code: Initially we had no experience of using GitHub as a group and found it awkward to make code accessible to the other team members, however, we practiced and brushed up on our git skills which was a bit of a learning curve, but this made it much easier to share code and the reassurance of the version control as a backup copy was great.
+  \item Mistakes: As with any work, we made a few errors. This did make our solutions incorrect initially, however when we reached Problem B, we quickly realised the error and were able to use a MS Teams call to rectify it and act swiftly to correct the solution.
+\end{itemize}
+
 \end{document}
+
+

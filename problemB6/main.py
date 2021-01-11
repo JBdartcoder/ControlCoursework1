@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# Define all involved symbolic variables
-# constants
+# Define all involved symbolic variables and constants
 m, g, d, delta, r, R, L_0, L_1, alpha, c, k, b, phi, tau, kappa = sym.symbols('m, g, d, delta, r, R, L_0, L_1,'
                                                                               ' alpha, c, k, b, phi, tau, kappa')
 # system variables
@@ -43,44 +42,38 @@ x2_eq_value = 0
 x3_eq_eqn = V_e / R
 x3_eq_value = x3_eq_eqn.subs([(V_e, V_e_value), (R, R_value)])
 
+
 # Substitute values of the constants into the equations for A_1 -> B_3
-A_1_value = float(A_1.subs(
-    [(m, m_value), (c, c_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value), (k, k_value)]))
-A_2_value = float(A_2.subs([(b, b_value), (m, m_value)]))
-A_3_value = float(A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
-B_1_value = float(B_1.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
-B_2_value = float(B_2.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
-     (x3_eq, x3_eq_value), (V_e, V_e_value)]))
-B_3_value = float(B_3.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
-     (R, R_value)]))
+def evaluate_constants(f):
+    """
+    This function subs in
+    the constant values into
+    A1, A2, A3, B1, B2 and B3
+    """
+    return f.subs([(m, m_value), (R, R_value), (L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value),
+                   (c, c_value), (delta, delta_value), (k, k_value), (b, b_value), (x3_eq, x3_eq_value),
+                   (x1_eq, x1_eq_value), (V_e, V_e_value)])
+
+
+A_1_value = float(evaluate_constants(A_1))
+A_2_value = float(evaluate_constants(A_2))
+A_3_value = float(evaluate_constants(A_3))
+B_1_value = float(evaluate_constants(B_1))
+B_2_value = float(evaluate_constants(B_2))
+B_3_value = float(evaluate_constants(B_3))
+
 
 # Use A_1 -> B_3 to determine the coefficients of the numerator
 # and the denominator (from s^3 - s^0 term)
-
 num_value = A_3_value * B_1_value
 s_3_den_value = 1.0       # coeff. of s^3
 s_2_den_value = -B_3_value - A_2_value      # coeff. of s^2
 s_1_den_value = (B_3_value * A_2_value) - A_1_value     # coeff. of s^1
 s_0_den_value = (B_3_value*A_1_value) - (A_3_value*B_2_value)       # coeff. of s^0
 
-"""
-print(num_value)
-print(s_3_den_value)
-print(s_2_den_value)
-print(s_1_den_value)
-print(s_0_den_value)
-"""
-
 # Declare overall numerator and denominator of transfer function
 num_Gx = [num_value]
 den_Gx = [s_3_den_value, s_2_den_value, s_1_den_value, s_0_den_value]
-
-# # I had to type in the actual numbers for the transfer function to work
-# num_Gx = [1639.10919772563]
-# den_Gx = [1., 181.298987845931, 3919.09863700501, 172943.180855727]
 
 # Declare additional symbols from the transfer function
 s, t = sym.symbols('s, t')
@@ -92,10 +85,6 @@ G_1 = C.TransferFunction(num_Gx, den_Gx)
 # G_2 = kappa / ((tau * s) + 1)
 G_2 = C.TransferFunction([1], [tau, 1])
 
-# Combining the two transfer function in parallel
-# G_x = C.parallel(G_1, G_2)
-# G_x = G_1 / (1 + (G_1 * G_2))
-
 
 def pid(kp, ki, kd):
     # This function constructs the transfer function of a PID
@@ -106,6 +95,7 @@ def pid(kp, ki, kd):
     return pid_tf
 
 
+# Setting the PID values
 Kp = 70
 Ki = 0.1
 Kd1 = 3
@@ -115,20 +105,25 @@ controller1 = pid(Kp, Ki, Kd1)
 controller2 = pid(Kp, Ki, Kd2)
 controller3 = pid(Kp, Ki, Kd3)
 
+# Declaring the simulation range and num_points
 t_final = 1
 num_points = 500
 t_span = np.linspace(0, t_final, num_points)
 
+# Using the feedback function to calculate the transfer function of the entire system
 G_x = C.feedback(G_1, G_2)
+
+# The transfer functions for the different values of kd
 G_d1 = C.feedback(G_x, controller1)
 G_d2 = C.feedback(G_x, controller2)
 G_d3 = C.feedback(G_x, controller3)
 
+# Using the impulse response function to simulation the controller
 t_imp, x_imp1 = C.impulse_response(G_d1, t_span)
 _, x_imp2 = C.impulse_response(G_d2, t_span)
 _, x_imp3 = C.impulse_response(G_d3, t_span)
 
-
+# Plotting the graphs
 plt.plot(t_imp, x_imp1, label='$K_d = 3$')
 plt.plot(t_imp, x_imp2, label='$K_d = 4$')
 plt.plot(t_imp, x_imp3, label='$K_d = 5$')

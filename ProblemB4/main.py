@@ -39,19 +39,26 @@ x2_eq_value = 0
 x3_eq_eqn = V_e / R
 x3_eq_value = x3_eq_eqn.subs([(V_e, V_e_value), (R, R_value)])
 
+
 # Substitute values of the constants into the equations for A_1 -> B_3
-A_1_value = float(A_1.subs(
-    [(m, m_value), (c, c_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value), (k, k_value)]))
-A_2_value = float(A_2.subs([(b, b_value), (m, m_value)]))
-A_3_value = float(A_3.subs([(c, c_value), (m, m_value), (x3_eq, x3_eq_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
-B_1_value = float(B_1.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value)]))
-B_2_value = float(B_2.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value), (R, R_value),
-     (x3_eq, x3_eq_value), (V_e, V_e_value)]))
-B_3_value = float(B_3.subs(
-    [(L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value), (delta, delta_value), (x1_eq, x1_eq_value),
-     (R, R_value)]))
+def evaluate_constants(f):
+    """
+    This function subs in
+    the constant values into
+    A1, A2, A3, B1, B2 and B3
+    """
+    return f.subs([(m, m_value), (R, R_value), (L_0, L_0_value), (L_1, L_1_value), (alpha, alpha_value),
+                   (c, c_value), (delta, delta_value), (k, k_value), (b, b_value), (x3_eq, x3_eq_value),
+                   (x1_eq, x1_eq_value), (V_e, V_e_value)])
+
+
+A_1_value = float(evaluate_constants(A_1))
+A_2_value = float(evaluate_constants(A_2))
+A_3_value = float(evaluate_constants(A_3))
+B_1_value = float(evaluate_constants(B_1))
+B_2_value = float(evaluate_constants(B_2))
+B_3_value = float(evaluate_constants(B_3))
+
 
 # Use A_1 -> B_3 to determine the coefficients of the numerator
 # and the denominator (from s^3 - s^0 term)
